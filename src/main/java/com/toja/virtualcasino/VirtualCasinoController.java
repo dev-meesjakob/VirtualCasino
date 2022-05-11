@@ -3,7 +3,7 @@ package com.toja.virtualcasino;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class VirtualCasinoController {
     @FXML
     private Label welcomeText;
 

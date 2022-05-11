@@ -62,7 +62,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.toja.virtualcasino/com.toja.virtualcasino.HelloApplication</mainClass>
+                            <mainClass>com.toja.virtualcasino/com.toja.virtualcasino.VirtualCasino</mainClass>
                         </configuration>
                     </execution>
                 </executions>
