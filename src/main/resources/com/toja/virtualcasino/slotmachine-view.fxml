@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController"/>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController">
+   <children>
+      <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#hallo" text="Button" />
+      <Label fx:id="welcomeText" layoutX="60.0" layoutY="70.0" text="Label" />
+   </children>
+</Pane>
