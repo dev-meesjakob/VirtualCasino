@@ -18,12 +18,22 @@ public class VirtualCasinoController {
     }
 
     @FXML
-    public void startSlotMachine() throws IOException {
+    private void startSlotMachine() throws IOException {
         Stage slotMachineStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("slotmachine-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 300);
         slotMachineStage.setTitle("Hello!");
         slotMachineStage.setScene(scene);
         slotMachineStage.show();
+    }
+
+    @FXML
+    private void startWheelFort() throws IOException {
+        Stage wheelFortStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("wheelfort-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300, 300);
+        wheelFortStage.setTitle("Hello!");
+        wheelFortStage.setScene(scene);
+        wheelFortStage.show();
     }
 }
