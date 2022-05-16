@@ -11,6 +11,7 @@ import java.io.IOException;
 public class VirtualCasinoController {
     @FXML
     private Label welcomeText;
+    public static int currAmount = 100;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -32,8 +33,16 @@ public class VirtualCasinoController {
         Stage wheelFortStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("wheelfort-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 300);
-        wheelFortStage.setTitle("Hello!");
+        wheelFortStage.setTitle("Glücksrad");
         wheelFortStage.setScene(scene);
         wheelFortStage.show();
+    }
+
+    static void setCurrAmount (int amount) {
+        currAmount = amount;
+    }
+
+    static int getCurrAmount () {
+        return currAmount;
     }
 }
