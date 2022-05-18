@@ -11,7 +11,7 @@ import java.io.IOException;
 public class VirtualCasinoController {
     @FXML
     private Label welcomeText;
-    public static int currAmount = 100;
+    public static int currAmount = 30;
 
     @FXML
     protected void onHelloButtonClick() {

@@ -6,12 +6,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.WheelFortController">
    <children>
-      <Button layoutX="75.0" layoutY="236.0" mnemonicParsing="false" onAction="#spin" prefHeight="36.0" prefWidth="151.0" text="Glücksrad drehen!" />
-      <Label fx:id="topField" layoutX="130.0" layoutY="20.0" prefHeight="54.0" text="M" textAlignment="CENTER">
+      <Button fx:id="spinBtn" layoutX="75.0" layoutY="225.0" mnemonicParsing="false" onAction="#spin" prefHeight="36.0" prefWidth="151.0" text="Glücksrad drehen!" />
+      <Label fx:id="topField" layoutX="130.0" layoutY="20.0" prefHeight="54.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="valLabel" layoutX="100.0" layoutY="200.0" text="100" />
+      <Label fx:id="valLabel" layoutX="120.0" layoutY="200.0" />
+      <Label layoutX="120.0" layoutY="270.0" text="Einsatz: 25$" />
+      <Label fx:id="amountLabel" layoutX="260.0" layoutY="6.0" text="100$" />
    </children>
 </Pane>
