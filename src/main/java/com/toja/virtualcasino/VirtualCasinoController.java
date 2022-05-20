@@ -22,7 +22,7 @@ public class VirtualCasinoController {
     private void startSlotMachine() throws IOException {
         Stage slotMachineStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("slotmachine-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+        Scene scene = new Scene(fxmlLoader.load(), 550, 295);
         slotMachineStage.setTitle("Hello!");
         slotMachineStage.setScene(scene);
         slotMachineStage.show();

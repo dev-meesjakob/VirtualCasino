@@ -9,14 +9,6 @@ import java.io.IOException;
 
 public class WheelFortController {
 
-    public void initialize() {
-        WheelFort.wheelCreate();
-        amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
-        if (VirtualCasinoController.getCurrAmount() < 25) {
-            spinBtn.setDisable(true);
-        }
-    }
-
     @FXML
     private Label topField;
     @FXML
@@ -25,6 +17,14 @@ public class WheelFortController {
     private Label amountLabel;
     @FXML
     private Button spinBtn;
+
+    public void initialize() {
+        WheelFort.wheelCreate();
+        amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
+        if (VirtualCasinoController.getCurrAmount() < 25) {
+            spinBtn.setDisable(true);
+        }
+    }
 
     @FXML
     public void spin() {

@@ -7,21 +7,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController">
    <children>
-      <Button layoutX="176.0" layoutY="178.0" mnemonicParsing="false" onAction="#hallo" prefHeight="40.0" prefWidth="148.0" text="Walzen drehen">
+      <Button fx:id="playBtn" layoutX="201.0" layoutY="179.0" mnemonicParsing="false" onAction="#playSlot" prefHeight="40.0" prefWidth="148.0" text="Walzen drehen">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label fx:id="welcomeText" layoutX="450.0" layoutY="12.0" text="100$" />
-      <TextArea layoutX="205.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
-      <TextArea layoutX="301.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
-      <TextArea layoutX="110.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
-      <TextField layoutX="270.0" layoutY="244.0" prefHeight="25.0" prefWidth="60.0" />
-      <Label layoutX="170.0" layoutY="246.0" text="Dein Einsatz:">
+      <Label fx:id="amountLabel" layoutX="500.0" layoutY="12.0" text="100$" />
+      <TextArea fx:id="iconFld3" editable="false" layoutX="230.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
+      <TextArea fx:id="iconFld4" editable="false" layoutX="325.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
+      <TextArea fx:id="iconFld2" editable="false" layoutX="135.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
+      <TextField fx:id="betFld" layoutX="296.0" layoutY="244.0" prefHeight="25.0" prefWidth="60.0" />
+      <Label layoutX="194.0" layoutY="246.0" text="Dein Einsatz:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
+      <TextArea fx:id="iconFld1" editable="false" layoutX="40.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
+      <TextArea fx:id="iconFld5" editable="false" layoutX="420.0" layoutY="43.0" prefHeight="120.0" prefWidth="90.0" />
    </children>
 </Pane>
