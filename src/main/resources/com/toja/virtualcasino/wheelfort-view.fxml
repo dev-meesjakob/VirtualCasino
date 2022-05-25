@@ -7,7 +7,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.WheelFortController">
    <children>
       <Button fx:id="spinBtn" layoutX="75.0" layoutY="225.0" mnemonicParsing="false" onAction="#spin" prefHeight="36.0" prefWidth="151.0" text="Glücksrad drehen!" />
-      <Label fx:id="topField" layoutX="130.0" layoutY="20.0" prefHeight="54.0" textAlignment="CENTER">
+      <Label fx:id="topField" contentDisplay="CENTER" layoutX="130.0" layoutY="20.0" prefHeight="54.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="37.0" />
          </font>
