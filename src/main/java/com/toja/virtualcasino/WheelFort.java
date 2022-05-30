@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class WheelFort {
     public static ArrayList<WheelField> wheel = new ArrayList<>();
 
+    //Eigentliche Spieloperation
     public static WheelField wheelSpin() {
         /*for (int i = 0; i < 20; i++) {
             WheelField test = new WheelField("" + (char) (i+65), i+1);
@@ -16,11 +17,14 @@ public class WheelFort {
         return field;
     }
 
+    //Erstellen des Glücksrads
     public static void wheelCreate() {
+        //20 Felder erstellen
         for (int i = 0; i < 20; i++) {
             WheelField test = new WheelField("", i);
             wheel.add(test);
         }
+        //alle Felder mit Symbolen füllen
         WheelField test = new WheelField("A", 0);
         wheel.set(0, test);
         wheel.set(4, test);
