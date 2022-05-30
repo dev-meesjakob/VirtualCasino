@@ -18,6 +18,7 @@ public class WheelFortController {
     @FXML
     private Button spinBtn;
 
+    //Initialisieren des Fensters
     public void initialize() {
         WheelFort.wheelCreate();
         amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
@@ -26,7 +27,7 @@ public class WheelFortController {
         }
     }
 
-    @FXML
+    @FXML //passiert bei Drücken auf den Startknopf
     public void spin() {
             WheelField field = WheelFort.wheelSpin();
             topField.setText(field.getSymbol());

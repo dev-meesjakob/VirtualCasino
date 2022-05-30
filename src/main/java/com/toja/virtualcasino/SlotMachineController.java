@@ -12,22 +12,27 @@ import java.util.ArrayList;
 public class SlotMachineController {
 
     @FXML
-    private Label amountLabel;
+    private Label amountLabel; //Label für den aktuellen Kontostand
     @FXML
-    private Button playBtn;
+    private Button playBtn; //Button zum Starten
     @FXML
-    private ArrayList<TextArea> reels = new ArrayList<>();
+    private ArrayList<TextArea> reels = new ArrayList<>(); //TextAreas für die Walzen
     @FXML
-    private Pane slotPane;
+    private Pane slotPane; //Hintergrund
     @FXML
-    private TextField betFld;
+    private TextField betFld; //Feld für den Einsatz des Spielers
+    @FXML
+    private Label lineLabel; // Hilfslabel für die Ausgabe der gewonnenen Linien
 
+    //Initialisieren des Fensters beim Starten
     public void initialize() {
-        SlotMachine.machineCreate();
-        amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
+        SlotMachine.machineCreate(); //Erzeugen der SlotMachine
+        amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$"); //aktuellen Kontostand anzeigen
         if (VirtualCasinoController.getCurrAmount() == 0) {
             playBtn.setDisable(true);
         }
+
+        //TextAreas für die einzelnen Walzen erstellen
         for (int i = 0; i < 5; i++) {
             TextArea temp = new TextArea();
             reels.add(temp);
@@ -40,11 +45,14 @@ public class SlotMachineController {
         }
     }
 
+    //läuft ab bei Drücken auf den Knopf
     public void playSlot() {
+        //prüft zu Beginn, ob Einsatz eingegeben wurde
         if (!betFld.getText().equals("")) {
             int bet = Integer.parseInt(betFld.getText());
-            ArrayList<String> allIcons = SlotMachine.spin(bet);
+            ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
 
+            //Anzeigen der Symbole auf den Walzen (TextAreas), des Kontostand und der gewonnenen Linien
             int zaehler = 0;
             for (int i = 0; i < 5; i++) {
                 reels.get(i).clear();
@@ -54,6 +62,9 @@ public class SlotMachineController {
                 }
             }
             amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
+            if(!SlotMachine.lines.isEmpty()) {
+                lineLabel.setText("Gewonnene Linien: " + SlotMachine.lines.get(0));
+            }
         }
     }
 }
