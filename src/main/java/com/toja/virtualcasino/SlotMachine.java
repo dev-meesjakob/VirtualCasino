@@ -24,28 +24,133 @@ public class SlotMachine {
         for (int i = 0; i < 5; i++) {
             list.addAll(machine.get(i).getFrontIcons());
         }
-
-        winCheck();
+        int add = (int) Math.round(b*winCheck());
+        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + add);
 
         return list;
     }
 
-    public static void winCheck() {
-        for (int i = 0; i < 3; i++) {
-            int x = 0;
-            if (machine.get(0).getFrontIcons().get(i) == machine.get(1).getFrontIcons().get(i) || machine.get(1).getFrontIcons().get(i) == machine.get(2).getFrontIcons().get(i)) {
-                if (machine.get(2).getFrontIcons().get(i) == machine.get(3).getFrontIcons().get(i)) {
-                    if (machine.get(3).getFrontIcons().get(i) == machine.get(4).getFrontIcons().get(i)) {
-                        x = 10;
-                    } else {
-                        x = 3;
-                    }
-                } else {
-                    x = 1;
-                }
-            }
+    public static double winCheck() {
+        double win = 0;
+        win = win + lineCheck(1, 1, 1, 1, 1, 1);
 
+        return win;
+    }
+
+    public static double lineCheck(int line, int a, int b, int c, int d, int e) {
+        int x = 0;
+        String symbol;
+        symbol = machine.get(0).getFrontIcons().get(a);
+        if (machine.get(0).getFrontIcons().get(a) == machine.get(1).getFrontIcons().get(b) && machine.get(1).getFrontIcons().get(b) == machine.get(2).getFrontIcons().get(c)) {
+            if (machine.get(2).getFrontIcons().get(c) == machine.get(3).getFrontIcons().get(d)) {
+                if (machine.get(3).getFrontIcons().get(d) == machine.get(4).getFrontIcons().get(e)) {
+                    x = 3;
+                } else {
+                    x = 2;
+                }
+            } else {
+                x = 1;
+            }
         }
+        double back = 0;
+        switch (symbol) {
+            case "A", "F":
+                switch (x) {
+                    case 1:
+                        back = 0.5;
+                        break;
+                    case 2:
+                        back = 4;
+                        break;
+                    case 3:
+                        back = 15;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "C", "G", "J":
+                switch (x) {
+                    case 1:
+                        back = 0.5;
+                        break;
+                    case 2:
+                        back = 3;
+                        break;
+                    case 3:
+                        back = 10;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "B":
+                switch (x) {
+                    case 1:
+                        back = 3;
+                        break;
+                    case 2:
+                        back = 13;
+                        break;
+                    case 3:
+                        back = 42;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "D":
+                switch (x) {
+                    case 1:
+                        back = 4;
+                        break;
+                    case 2:
+                        back = 24;
+                        break;
+                    case 3:
+                        back = 75;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "E":
+                switch (x) {
+                    case 1:
+                        back = 6;
+                        break;
+                    case 2:
+                        back = 40;
+                        break;
+                    case 3:
+                        back = 125;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "H":
+                switch (x) {
+                    case 1:
+                        back = 10;
+                        break;
+                    case 2:
+                        back = 75;
+                        break;
+                    case 3:
+                        back = 500;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "I":
+                back = 75;
+                break;
+            default:
+                break;
+        }
+        return back;
     }
 
 }
