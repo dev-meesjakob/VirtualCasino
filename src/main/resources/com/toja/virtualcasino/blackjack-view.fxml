@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.BlackjackController"/>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.toja.virtualcasino.BlackjackController">
+   <Label alignment="CENTER" layoutX="390.0" layoutY="15.0" prefWidth="130.0" text="Dealer's Cards"/>
+   <TextArea editable="false" layoutX="15.0" layoutY="45.0" prefHeight="120.0" prefWidth="120.0" visible="false"/>
+   <TextArea editable="false" layoutX="160.0" layoutY="45.0" prefHeight="130.0" prefWidth="130.0" visible="false"/>
+   <TextArea editable="false" layoutX="15.0" layoutY="190.0" prefHeight="130.0" prefWidth="130.0" visible="false"/>
+   <TextArea editable="false" layoutX="160.0" layoutY="190.0" prefHeight="130.0" prefWidth="130.0" visible="false"/>
+   <TextField fx:id="betFld" layoutX="15.0" layoutY="330.0" prefWidth="125.0" promptText="Bet an Amount"/>
+   <Button fx:id="betBtn" layoutX="165.0" layoutY="330.0" mnemonicParsing="false" onAction="#makeBet" prefWidth="125.0"
+           text="Bet to Start"/>
+   <Button disable="true" layoutX="15.0" layoutY="370.0" mnemonicParsing="false" prefWidth="125.0" text="Split"/>
+   <Button fx:id="doubleBtn" layoutX="165.0" layoutY="370.0" mnemonicParsing="false" onAction="#playerDouble"
+           prefWidth="125.0" text="Double"/>
+   <TextArea fx:id="dealerCardDisplay" editable="false" layoutX="390.0" layoutY="45.0" prefHeight="130.0"
+             prefWidth="130.0"/>
+   <Label alignment="CENTER" layoutX="82.5" layoutY="15.0" prefWidth="130.0" text="Your Cards"/>
+   <TextArea fx:id="playerCardDisplay" editable="false" layoutX="80.0" layoutY="45.0" prefHeight="130.0"
+             prefWidth="130.0"/>
+   <Button fx:id="hitBtn" layoutX="15.0" layoutY="410.0" mnemonicParsing="false" onAction="#hitButton" prefWidth="130.0"
+           text="Hit"/>
+   <Button layoutX="160.0" layoutY="410.0" mnemonicParsing="false" onAction="#stand" prefWidth="130.0" text="Stand"/>
+   <Label fx:id="playerScoreLbl" alignment="CENTER" layoutX="82.5" layoutY="190.0" prefWidth="130.0" text="Points: 0"/>
+   <Label fx:id="dealerScoreLbl" alignment="CENTER" layoutX="390.0" layoutY="190.0" prefWidth="130.0" text="Points: 0"/>
+   <Label fx:id="playerCurrencyLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="340.0"
+          prefWidth="150.0" text="CurrAmount" textAlignment="CENTER">
+      <font>
+         <Font size="24.0"/>
+      </font>
+   </Label>
+   <Label fx:id="playerBetLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="380.0"
+          prefWidth="150.0" text="No bet yet" textAlignment="CENTER">
+      <font>
+         <Font size="24.0"/>
+      </font>
+   </Label>
+</Pane>
