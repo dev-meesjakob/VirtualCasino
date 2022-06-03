@@ -18,5 +18,6 @@
          </font>
       </Label>
       <Label fx:id="lineLabel" layoutX="20.0" layoutY="200.0" text="Gewonnene Linie: " />
+      <TextArea layoutX="-220.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </Pane>

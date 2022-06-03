@@ -58,10 +58,26 @@ public class SlotMachine {
     public static double lineCheck(int line, int a, int b, int c, int d, int e) {
         int x = 0; //x ist die Gewinnstufe (0 - max. 2 gleiche Symbole in einer Reihe, 1 - 3 gleiche, 2 - 4 gleiche, 3 - 5 gleiche)
         String symbol;
-        symbol = machine.get(0).getFrontIcons().get(a); //Symbol, dass in einer Reihe ist
+        if (machine.get(0).getFrontIcons().get(a).equals("I")) {
+            if (machine.get(1).getFrontIcons().get(b).equals("I")) {
+                if (machine.get(2).getFrontIcons().get(c).equals("I")) {
+                    if (machine.get(3).getFrontIcons().get(d).equals("I")) {
+                        symbol = machine.get(4).getFrontIcons().get(e);
+                    } else {
+                        symbol = machine.get(3).getFrontIcons().get(d);
+                    }
+                } else {
+                    symbol = machine.get(2).getFrontIcons().get(c);
+                }
+            } else {
+                symbol = machine.get(1).getFrontIcons().get(b);
+            }
+        } else {
+            symbol = machine.get(0).getFrontIcons().get(a); //Symbol, auf dass in der Reihe geprüft wird
+        }
 
         //Überprüfen, wie viele Symbole hintereinander (von links) gleich sind
-        if (Objects.equals(machine.get(0).getFrontIcons().get(a), machine.get(1).getFrontIcons().get(b)) && Objects.equals(machine.get(1).getFrontIcons().get(b), machine.get(2).getFrontIcons().get(c))) {
+        if (machine.get(0).getFrontIcons().get(a).equals(machine.get(1).getFrontIcons().get(b)) && machine.get(1).getFrontIcons().get(b).equals(machine.get(2).getFrontIcons().get(c))) {
             if (Objects.equals(machine.get(2).getFrontIcons().get(c), machine.get(3).getFrontIcons().get(d))) {
                 if (Objects.equals(machine.get(3).getFrontIcons().get(d), machine.get(4).getFrontIcons().get(e))) {
                     x = 3;
@@ -81,8 +97,7 @@ public class SlotMachine {
                     case 1 -> back = 0.5;
                     case 2 -> back = 4;
                     case 3 -> back = 15;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "C", "G", "J":
@@ -90,8 +105,7 @@ public class SlotMachine {
                     case 1 -> back = 0.5;
                     case 2 -> back = 3;
                     case 3 -> back = 10;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "B":
