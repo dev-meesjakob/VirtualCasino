@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.toja.virtualcasino.CurrencyMenuController">
+   <Label layoutX="240.0" layoutY="120.0" text="Purchase VC$">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Label>
+   <ImageView fitHeight="62.5" fitWidth="125.0" layoutX="12.0" layoutY="200.0">
+      <Image url="@./img/500.png"/>
+   </ImageView>
+   <ImageView fitHeight="62.5" fitWidth="125.0" layoutX="163.0" layoutY="200.0">
+      <Image url="@img/1000.png"/>
+   </ImageView>
+   <ImageView fitHeight="62.5" fitWidth="125.0" layoutX="313.0" layoutY="200.0">
+      <Image url="@img/5000.png"/>
+   </ImageView>
+   <ImageView fitHeight="62.5" fitWidth="125.0" layoutX="463.0" layoutY="200.0">
+      <Image url="@img/10000.png"/>
+   </ImageView>
+   <Button layoutX="12.0" layoutY="271.0" mnemonicParsing="false" onAction="#buy500" prefWidth="125.0"
+           text="Buy 500 VC$ - 5€"/>
+   <Button layoutX="163.0" layoutY="271.0" mnemonicParsing="false" onAction="#buy1000" prefWidth="125.0"
+           text="Buy 1000 VC$ - 10€"/>
+   <Button layoutX="313.0" layoutY="271.0" mnemonicParsing="false" onAction="#buy5000" prefWidth="125.0"
+           text="Buy 5000 VC$ - 50€"/>
+   <Button layoutX="463.0" layoutY="271.0" mnemonicParsing="false" onAction="#buy10000" prefWidth="125.0"
+           text="Buy 10k VC$ - 100€"/>
+   <VBox alignment="CENTER" layoutX="50.0" layoutY="14.0" prefHeight="75.0" prefWidth="500.0">
+      <Label fx:id="currAmountLbl" text="CurrAmount">
+         <font>
+            <Font size="50.0"/>
+         </font>
+      </Label>
+   </VBox>
+</Pane>

@@ -41,6 +41,16 @@ public class VirtualCasinoController {
         blackjackStage.show();
     }
 
+    @FXML
+    private void startCurrMenu() throws IOException {
+        Stage blackjackStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("currencymenu-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 450);
+        blackjackStage.setTitle("Currency");
+        blackjackStage.setScene(scene);
+        blackjackStage.show();
+    }
+
     static void setCurrAmount (int amount) {
         currAmount = amount;
     }

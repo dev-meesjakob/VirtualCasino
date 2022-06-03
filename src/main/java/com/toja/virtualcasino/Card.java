@@ -52,9 +52,6 @@ public class Card {
                 newDeck.add(temp);
             }
         }
-        for (Card card : newDeck) {
-            System.out.println("Card: " + card.getNameString());
-        }
         return newDeck;
     }
 

@@ -46,8 +46,6 @@ public class BlackjackController {
         doubleBtn.setDisable(true);
     }
 
-    // !! Geld noch nicht richtig (wahrscheinlich Wetten iwie zurückgesetzt durch startGame() Aufruf !!
-
     // Spiel starten/neu starten
     public void startGame() {
         if (!isStart) {
@@ -55,7 +53,7 @@ public class BlackjackController {
             deck1 = Card.create52Deck();
             playerHands = new ArrayList<>();
             dealerHand = new ArrayList<>();
-            main = new Blackjack(deck1, 0, playerHands, dealerHand);
+            main = new Blackjack(deck1, main.getPlayerBet(), playerHands, dealerHand);
 
             // Punkteberechnung zurücksetzen
             playerScore1 = 0;
@@ -65,7 +63,7 @@ public class BlackjackController {
             dealerScoreLbl.setText("Points: 0");
             betFld.clear();
 
-            // Kartenanzeige und Wettenknopf zurücksetzen
+            // Kartenanzeige zurücksetzen
             playerCardDisplay.setText("");
             dealerCardDisplay.setText("");
         }
@@ -141,8 +139,6 @@ public class BlackjackController {
         dealerCardDisplay.setText(dealerCardDisplay.getText() + temp.getNameString() + "\n");
 
         if (temp.getValue() == 1) {
-            // Hat der Dealer ein Ass?
-            boolean dealerAce = true;
             dealerScore += 11;
         } else if (temp.getValue() == 1 && (dealerScore + 11) > 21) {
             dealerScore += temp.getValue();
@@ -176,6 +172,7 @@ public class BlackjackController {
             // Spieler gewinnt -> Gewinn anzeigen & Währung hinzufügen
             playerCardDisplay.setText(playerCardDisplay.getText() + "You win!");
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + 2*main.getPlayerBet());
+            System.out.println("Added money: " + main.getPlayerBet());
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
             // Wette zurücksetzen
@@ -186,6 +183,7 @@ public class BlackjackController {
             // Unentschieden
             playerCardDisplay.setText(playerCardDisplay.getText() + "Draw!");
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + main.getPlayerBet());
+            System.out.println("Added money: " + main.getPlayerBet());
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
             playerBetLbl.setText("No bet yet");
@@ -215,6 +213,7 @@ public class BlackjackController {
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - playerBet);
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
             main.makeBet(playerBet);
+            System.out.println("Made bet: " + main.getPlayerBet());
             playerBetLbl.setText((main.getPlayerBet()) + " VC$");
             betBtn.setDisable(true);
             hitBtn.setDisable(false);
@@ -225,6 +224,12 @@ public class BlackjackController {
 
     // Spieler kann am Anfang verdoppeln
     @FXML public void playerDouble() {
+        if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet()) {
+            betFld.clear();
+            betFld.setPromptText("Not enough money");
+            return;
+        }
+
         hitBtn.setDisable(true);
         doubleBtn.setDisable(true);
 
