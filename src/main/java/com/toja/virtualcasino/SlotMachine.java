@@ -22,18 +22,21 @@ public class SlotMachine {
     }
 
     //Eigentliche Spiel-Operation
-    public static ArrayList<String> spin(int b) {
+    public static void spin(int b) {
         VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - b); //Abziehen des Wetteinsatzes vom Spielerkonto
+        for (int i = 0; i < 5; i++) {
+            machine.get(i).createFrontIcons();
+        }
 
         //FrontIcons der Walzen bekommen
-        ArrayList<String> list= new ArrayList<>();
+        /*ArrayList<String> list= new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             list.addAll(machine.get(i).getFrontIcons());
-        }
+        }*/
         int add = (int) Math.round(b*winCheck()); //Gewinn berechnen und zum Konto addieren
         VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + add);
 
-        return list;
+
     }
 
     public static double winCheck() {
@@ -77,9 +80,9 @@ public class SlotMachine {
         }
 
         //Überprüfen, wie viele Symbole hintereinander (von links) gleich sind
-        if (machine.get(0).getFrontIcons().get(a).equals(machine.get(1).getFrontIcons().get(b)) && machine.get(1).getFrontIcons().get(b).equals(machine.get(2).getFrontIcons().get(c))) {
-            if (Objects.equals(machine.get(2).getFrontIcons().get(c), machine.get(3).getFrontIcons().get(d))) {
-                if (Objects.equals(machine.get(3).getFrontIcons().get(d), machine.get(4).getFrontIcons().get(e))) {
+        if ((machine.get(1).getFrontIcons().get(b).equals(symbol) || machine.get(1).getFrontIcons().get(b).equals("I")) && (machine.get(2).getFrontIcons().get(c).equals(symbol) || machine.get(2).getFrontIcons().get(c).equals("I"))) {
+            if (machine.get(3).getFrontIcons().get(d).equals(symbol) || machine.get(3).getFrontIcons().get(d).equals("I")) {
+                if (machine.get(4).getFrontIcons().get(e).equals(symbol) || machine.get(4).getFrontIcons().get(e).equals("I")) {
                     x = 3;
                 } else {
                     x = 2;
@@ -113,8 +116,7 @@ public class SlotMachine {
                     case 1 -> back = 3;
                     case 2 -> back = 13;
                     case 3 -> back = 42;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "D":
@@ -122,8 +124,7 @@ public class SlotMachine {
                     case 1 -> back = 4;
                     case 2 -> back = 24;
                     case 3 -> back = 75;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "E":
@@ -131,8 +132,7 @@ public class SlotMachine {
                     case 1 -> back = 6;
                     case 2 -> back = 40;
                     case 3 -> back = 125;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "H":
@@ -140,18 +140,18 @@ public class SlotMachine {
                     case 1 -> back = 10;
                     case 2 -> back = 75;
                     case 3 -> back = 500;
-                    default -> {
-                    }
+                    default -> back = 0;
                 }
                 break;
             case "I":
-                back = 0;
+                back = 75;
                 break;
             default:
                 break;
         }
         //Wiedergeben, ob diese Linie gewonnen wurde
         if (back != 0) {
+            lines.clear();
             lines.add(line);
         }
         return back;

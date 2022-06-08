@@ -50,15 +50,22 @@ public class SlotMachineController {
         //prüft zu Beginn, ob Einsatz eingegeben wurde
         if (!betFld.getText().equals("")) {
             int bet = Integer.parseInt(betFld.getText());
-            ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
+            //ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
+            SlotMachine.spin(bet);
 
             //Anzeigen der Symbole auf den Walzen (TextAreas), des Kontostand und der gewonnenen Linien
-            int zaehler = 0;
+            /*int zaehler = 0;
             for (int i = 0; i < 5; i++) {
                 reels.get(i).clear();
                 for (int x = 0; x < 3; x++) {
                     reels.get(i).appendText(allIcons.get(zaehler) + "\n");
                     zaehler++;
+                }
+            }*/
+            for (int i = 0; i < 5; i++) {
+                reels.get(i).clear();
+                for (int x = 0; x < 3; x++) {
+                    reels.get(i).appendText(SlotMachine.machine.get(i).getFrontIcons().get(x) + "\n");
                 }
             }
             amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
