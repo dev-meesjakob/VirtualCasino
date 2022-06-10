@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="slotPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="550.0" stylesheets="@../../../../java/com/toja/virtualcasino/meinLayout.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController">
+<Pane fx:id="slotPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.SlotMachineController">
    <children>
       <Button fx:id="playBtn" layoutX="201.0" layoutY="200.0" mnemonicParsing="false" onAction="#playSlot" prefHeight="40.0" prefWidth="148.0" text="Walzen drehen">
          <font>
