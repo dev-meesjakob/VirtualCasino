@@ -26,6 +26,7 @@ public class VirtualCasinoController {
         Stage wheelFortStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("wheelfort-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 300);
+        scene.getStylesheets().add("http://www.gis-informatik.de/~torge.neuendorf/wheelFort.css");
         wheelFortStage.setTitle("Wheel of Fortune");
         wheelFortStage.setScene(scene);
         wheelFortStage.show();
