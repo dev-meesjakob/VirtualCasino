@@ -55,5 +55,4 @@ public class Card {
         return newDeck;
     }
 
-
 }

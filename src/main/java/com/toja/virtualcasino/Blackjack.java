@@ -51,8 +51,4 @@ public class Blackjack {
     public ArrayList<Card> getDealerCards() {
         return dealerCards;
     }
-
-    public void setDealerCards(ArrayList<Card> dealerCards) {
-        this.dealerCards = dealerCards;
-    }
 }
