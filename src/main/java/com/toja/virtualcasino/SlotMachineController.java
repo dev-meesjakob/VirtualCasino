@@ -31,7 +31,7 @@ public class SlotMachineController {
     //Initialisieren des Fensters beim Starten
     public void initialize() {
         SlotMachine.machineCreate(); //Erzeugen der SlotMachine
-        amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$"); //aktuellen Kontostand anzeigen
+        amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$"); //aktuellen Kontostand anzeigen
         if (VirtualCasinoController.getCurrAmount() == 0) {
             playBtn.setDisable(true); //Btn "ausschalten" bei keinem Geld
         }
@@ -53,43 +53,36 @@ public class SlotMachineController {
     //läuft ab bei Drücken auf den Knopf
     public void playSlot() {
         //prüft zu Beginn, ob Einsatz eingegeben wurde
-        if (!betFld.getText().equals("")) {
-            int bet = Integer.parseInt(betFld.getText());
-            //ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
-            int gain = SlotMachine.spin(bet);
-
-            //Anzeigen der Symbole auf den Walzen (TextAreas), des Kontostand und der gewonnenen Linien
-            /*int zaehler = 0;
-            for (int i = 0; i < 5; i++) {
-                reels.get(i).clear();
-                for (int x = 0; x < 3; x++) {
-                    reels.get(i).appendText(allIcons.get(zaehler) + "\n");
-                    zaehler++;
-                }
-            }*/
-            for (int i = 0; i < 5; i++) {
-                reels.get(i).clear();
-                for (int x = 0; x < 3; x++) {
-                    reels.get(i).appendText(SlotMachine.machine.get(i).getFrontIcons().get(x) + "\n");
-                }
-            }
-            amountLabel.setText(VirtualCasinoController.getCurrAmount() + "$");
-            if(!SlotMachine.lines.isEmpty()) {
-                lineLabel.setText("Gewonnene Linien: " + SlotMachine.lines.get(0));
-            }
-            //Ausgeben des Gewinns bzw. ob zu wenig Geld da ist
-            if (gain > 0) {
-                gainLabel.setText("Gewinn: " + gain + "VC$");
-            } else if (gain == 0) {
-                gainLabel.setText("Kein Gewinn.");
-            } else {
-                gainLabel.setText("Nicht genug Geld!");
-            }
-            if (VirtualCasinoController.getCurrAmount() == 0) {
-                playBtn.setDisable(true);
-            }
-        } else {
+        if (betFld.getText().equals("")) {
             gainLabel.setText("Wetteinsatz eingeben!"); //Wenn der Spieler nichts eingibt
+        } else if (!betFld.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            gainLabel.setText("Nur Zahlen eingeben!"); //Wenn der Spieler Quatsch eingibt
+        } else if (Integer.parseInt(betFld.getText()) > VirtualCasinoController.getCurrAmount()) {
+            gainLabel.setText("Nicht genug Geld!"); //Wenn der Spieler etwas zu hohes eingibt
+        } else{
+                int bet = Integer.parseInt(betFld.getText());
+                //ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
+                int gain = SlotMachine.spin(bet);
+
+                for (int i = 0; i < 5; i++) {
+                    reels.get(i).clear();
+                    for (int x = 0; x < 3; x++) {
+                        reels.get(i).appendText(SlotMachine.machine.get(i).getFrontIcons().get(x) + "\n");
+                    }
+                }
+                amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$");
+                if(!SlotMachine.lines.isEmpty()) {
+                    lineLabel.setText("Gewonnene Linien: " + SlotMachine.lines.get(0));
+                }
+                //Ausgeben des Gewinns bzw. ob zu wenig Geld da ist
+                if (gain > 0) {
+                    gainLabel.setText("Gewinn: " + gain + " VC$");
+                } else {
+                    gainLabel.setText("Kein Gewinn.");
+                }
+                if (VirtualCasinoController.getCurrAmount() == 0) {
+                    playBtn.setDisable(true);
+                }
+            }
         }
     }
-}
