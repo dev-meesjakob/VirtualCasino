@@ -7,8 +7,8 @@
    <children>
       <Button fx:id="spinBtn" layoutX="75.0" layoutY="225.0" mnemonicParsing="false" onAction="#spin" prefHeight="36.0" prefWidth="151.0" text="Glücksrad drehen!" />
       <Label fx:id="valLabel" layoutX="120.0" layoutY="200.0" />
-      <Label layoutX="120.0" layoutY="270.0" text="Einsatz: 25$" />
-      <Label fx:id="amountLabel" layoutX="250.0" layoutY="12.0" text="100$" />
+      <Label layoutX="120.0" layoutY="270.0" text="Einsatz: 25 VC$" />
+      <Label fx:id="amountLabel" layoutX="240.0" layoutY="12.0" prefWidth="55.0" text="100$" />
       <Label fx:id="imgLabel" layoutX="60.0" layoutY="12.0" prefHeight="180.0" prefWidth="180.0" />
    </children>
 </Pane>

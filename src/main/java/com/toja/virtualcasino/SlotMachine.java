@@ -23,25 +23,14 @@ public class SlotMachine {
 
     //Eigentliche Spiel-Operation
     public static int spin(int b) {
-        //prüfen, ob der Spieler überhaupt genug Geld hat.
-        if ((VirtualCasinoController.getCurrAmount() - b) >= 0) {
-            VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - b); //Abziehen des Wetteinsatzes vom Spielerkonto
-            for (int i = 0; i < 5; i++) {
-                machine.get(i).createFrontIcons();
-            }
-
-            //FrontIcons der Walzen bekommen
-        /*ArrayList<String> list= new ArrayList<>();
+        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - b); //Abziehen des Wetteinsatzes vom Spielerkonto
         for (int i = 0; i < 5; i++) {
-            list.addAll(machine.get(i).getFrontIcons());
-        }*/
-            int add = (int) Math.round(b * winCheck()); //Gewinn berechnen und zum Konto addieren
-            VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + add);
-            return add;
-        } else {
-            return -5;
+            machine.get(i).createFrontIcons();
         }
 
+        int add = (int) Math.round(b * winCheck()); //Gewinn berechnen und zum Konto addieren
+        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + add);
+        return add;
     }
 
     public static double winCheck() {
