@@ -55,4 +55,7 @@ public class Card {
         return newDeck;
     }
 
+    public Card.Rank getRank() {
+        return this.rank;
+    }
 }

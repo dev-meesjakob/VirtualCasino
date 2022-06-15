@@ -6,19 +6,19 @@ import java.util.Random;
 public class Blackjack {
 
     private static ArrayList<Card> deck;
-    private int playerBet;
+    private ArrayList<Integer> playerBet;
     private ArrayList<ArrayList<Card>> playerHands;
     private ArrayList<Card> dealerCards;
 
-    public Blackjack(ArrayList<Card> deck, int playerBet, ArrayList<ArrayList<Card>> playerHands, ArrayList<Card> dealerCards) {
+    public Blackjack(ArrayList<Card> deck, ArrayList<Integer> playerBet, ArrayList<ArrayList<Card>> playerHands, ArrayList<Card> dealerCards) {
         Blackjack.deck = Card.create52Deck();
         this.playerBet = playerBet;
         this.playerHands = playerHands;
         this.dealerCards = dealerCards;
     }
 
-    public int makeBet(int amount) {
-        setPlayerBet(amount);
+    public int makeBet(int amount, int hand) {
+        setPlayerBet(hand, amount);
         return amount;
     }
 
@@ -32,12 +32,12 @@ public class Blackjack {
     }
 
 
-    public int getPlayerBet() {
+    public ArrayList<Integer> getPlayerBet() {
         return playerBet;
     }
 
-    public void setPlayerBet(int playerBet) {
-        this.playerBet = playerBet;
+    public void setPlayerBet(int newBet, int hand) {
+        this.playerBet.set(hand, newBet);
     }
 
     public ArrayList<ArrayList<Card>> getPlayerHands() {

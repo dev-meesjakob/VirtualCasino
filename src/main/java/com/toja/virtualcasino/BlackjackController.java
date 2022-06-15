@@ -13,9 +13,11 @@ public class BlackjackController {
     public ArrayList<Card> deck1 = Card.create52Deck();
     public ArrayList<ArrayList<Card>> playerHands = new ArrayList<>();
     public ArrayList<Card> dealerHand = new ArrayList<>();
-    public Blackjack main = new Blackjack(deck1, 0, playerHands, dealerHand);
+    public ArrayList<Integer> playerBet = new ArrayList<>();
+    public Blackjack main = new Blackjack(deck1, playerBet, playerHands, dealerHand);
     private final ArrayList<ArrayList<Integer>> playerScores = new ArrayList<>();
-    private ArrayList<Integer> finScores = new ArrayList<>();
+    private final ArrayList<Integer> finScores = new ArrayList<>();
+    private final ArrayList<Boolean> isDone = new ArrayList<>();
 
 
     // Punktzahl des Dealers
@@ -73,6 +75,8 @@ public class BlackjackController {
 
         finScores.add(0);
         finScores.add(0);
+        isDone.add(false);
+        isDone.add(false);
     }
 
     // Spiel starten/neu starten
@@ -92,6 +96,9 @@ public class BlackjackController {
 
             finScores.set(0, 0);
             finScores.set(1, 0);
+
+            isDone.set(0, false);
+            isDone.set(1, false);
 
             dealerScore = 0;
             playerScoreLbl.setText("Points: 0");
@@ -128,16 +135,16 @@ public class BlackjackController {
         // Spieler bekommt zwei Karten
         playerHands.add(new ArrayList<>());
 
-        /* playerHands.get(0).add(0, new Card(Card.Rank.ACE, Card.Suit.SPADES));
+        playerHands.get(0).add(0, new Card(Card.Rank.ACE, Card.Suit.SPADES));
         playerHands.get(0).add(1, new Card(Card.Rank.ACE, Card.Suit.CLUBS));
         playerMainHand.setText(playerHands.get(0).get(0).getNameString() + "\n");
-        playerMainHand.setText(playerMainHand.getText() + playerHands.get(0).get(1).getNameString() + "\n"); */
+        playerMainHand.setText(playerMainHand.getText() + playerHands.get(0).get(1).getNameString() + "\n");
 
-        for (int i = 0; i < 2; i++) {
+        /*for (int i = 0; i < 2; i++) {
             hitButton(false, 0);
-        }
+        }*/
 
-        if (playerHands.get(0).get(0).getValue() == playerHands.get(0).get(1).getValue()) {
+        if (playerHands.get(0).get(0).getRank() == playerHands.get(0).get(1).getRank()) {
             splitBtn.setDisable(false);
         }
 
@@ -189,22 +196,28 @@ public class BlackjackController {
         } else {
             if (hand == 0 && split) {
                 splitScoreLbl1.setText("Points: " + playerScores.get(hand).get(0));
-                playerSplitHand1.setText(playerSplitHand1.getText() + "You lose!");
                 hitBtn1.setDisable(true);
+                standBtn1.setDisable(true);
                 betBtn.setDisable(false);
                 playerBetLbl.setText("No bet yet");
+                isDone.set(0, true);
             } else if (hand == 1) {
                 splitScoreLbl2.setText("Points: " + playerScores.get(hand).get(0));
-                playerSplitHand2.setText(playerSplitHand2.getText() + "You lose!");
                 hitBtn2.setDisable(true);
+                standBtn2.setDisable(true);
                 betBtn.setDisable(false);
                 playerBetLbl.setText("No bet yet");
+                isDone.set(1, true);
             } else {
                 playerScoreLbl.setText("Points: " + playerScores.get(hand).get(0));
                 playerMainHand.setText(playerMainHand.getText() + "You lose!");
                 hitBtn.setDisable(true);
                 betBtn.setDisable(false);
                 playerBetLbl.setText("No bet yet");
+                isDone.set(0, true);
+            }
+            if (isDone.get(0) && isDone.get(1)) {
+                stand(true, 0, isDone);
             }
         }
 
@@ -250,30 +263,33 @@ public class BlackjackController {
 
     // Spieler hört auf
     @FXML
-    public void stand(boolean split, int hand) {
+    public void stand(boolean split, int hand, ArrayList<Boolean> isDone) {
         /* fix when player loses one hand to going over 21*/
 
-        if (split && hand == 0) {
+        if (split) {
             if (playerScores.get(hand).get(1) > playerScores.get(hand).get(0) && playerScores.get(hand).get(1) < 22) {
                 finScores.set(hand, playerScores.get(hand).get(1));
             } else {
                 finScores.set(hand, playerScores.get(hand).get(0));
             }
-            hitBtn1.setDisable(true);
-        } else if (hand == 1) {
-            if (playerScores.get(hand).get(1) > playerScores.get(hand).get(0) && playerScores.get(hand).get(1) < 22) {
-                finScores.set(hand, playerScores.get(hand).get(1));
-            } else {
-                finScores.set(hand, playerScores.get(hand).get(0));
-            }
-            hitBtn2.setDisable(true);
-        } else {
 
+            isDone.set(hand, true);
+
+            if (hand == 0) {
+                hitBtn1.setDisable(true);
+                standBtn1.setDisable(true);
+            } else {
+                hitBtn2.setDisable(true);
+                standBtn2.setDisable(true);
+            }
+        } else {
             if (playerScores.get(hand).get(1) > playerScores.get(hand).get(0) && playerScores.get(hand).get(1) < 22) {
                 finScores.set(hand, playerScores.get(hand).get(1));
             } else {
                 finScores.set(hand, playerScores.get(0).get(0));
             }
+            isDone.set(hand, true);
+            standBtn.setDisable(true);
 
             // Dealer zieht jetzt seine Karten
             while (dealerScore < 17) {
@@ -282,10 +298,10 @@ public class BlackjackController {
 
 
             // Feststellung des Ergebnisses
-            if (finScores.get(0) > dealerScore || dealerScore > 21) {
+            if (finScores.get(0) > dealerScore && finScores.get(0) <= 21 || (dealerScore > 21 && finScores.get(0) <= 21)) {
                 // Spieler gewinnt -> Gewinn anzeigen & Währung hinzufügen
                 playerMainHand.setText(playerMainHand.getText() + "You win!");
-                VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + 2*main.getPlayerBet());
+                VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + 2*main.getPlayerBet().get(0));
                 playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
                 // Wette zurücksetzen
@@ -295,7 +311,7 @@ public class BlackjackController {
             } else if (finScores.get(0) == dealerScore) {
                 // Unentschieden
                 playerMainHand.setText(playerMainHand.getText() + "Draw!");
-                VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + main.getPlayerBet());
+                VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + main.getPlayerBet().get(0));
                 playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
                 playerBetLbl.setText("No bet yet");
@@ -311,15 +327,8 @@ public class BlackjackController {
             }
         }
 
-        boolean bothDone = false;
-        if (playerScores.get(0).get(0) > 21 && playerScores.get(0).get(1) > 21 && finScores.get(1) != 0 || playerScores.get(1).get(0) > 21 && playerScores.get(1).get(1) > 21 && finScores.get(0) != 0) {
-            bothDone = true;
-        } else if (finScores.get(0) != 0 && finScores.get(1) != 0) {
-            bothDone = true;
-        }
-
         if (split) {
-            if (bothDone) {
+            if (isDone.get(0) && isDone.get(1)) {
                 // Dealer zieht jetzt seine Karten
                 while (dealerScore < 17) {
                     hit();
@@ -327,9 +336,9 @@ public class BlackjackController {
 
                 for (int i = 0; i < 2; i++) {
                     // Feststellung des Ergebnisses
-                    if (finScores.get(i) > dealerScore || dealerScore > 21) {
+                    if (finScores.get(i) > dealerScore && finScores.get(i) <= 21 || (dealerScore > 21 && finScores.get(i) <= 21)) {
                         // Spieler gewinnt -> Gewinn anzeigen & Währung hinzufügen
-                        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + 2*main.getPlayerBet());
+                        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + 2*main.getPlayerBet().get(0));
                         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
                         if (i == 0) {
@@ -344,7 +353,7 @@ public class BlackjackController {
                         }
                     } else if (finScores.get(i) == dealerScore) {
                         // Unentschieden
-                        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + main.getPlayerBet());
+                        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() + main.getPlayerBet().get(0));
                         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
                         if (i == 0) {
@@ -388,7 +397,7 @@ public class BlackjackController {
             // Ja, Wette angenommen -> Geld subtrahieren, Wette anzeigen, "Hit" anschalten
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - playerBet);
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-            main.makeBet(playerBet);
+            main.makeBet(playerBet, 0);
             playerBetLbl.setText((main.getPlayerBet()) + " VC$");
             betBtn.setDisable(true);
             hitBtn.setDisable(false);
@@ -399,7 +408,8 @@ public class BlackjackController {
 
     // Spieler kann am Anfang verdoppeln
     @FXML public void playerDouble(boolean split, int hand) {
-        if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet()) {
+
+        if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet().get(0)) {
             betFld.clear();
             betFld.setPromptText("Not enough money");
             return;
@@ -408,36 +418,42 @@ public class BlackjackController {
         hitBtn.setDisable(true);
         doubleBtn.setDisable(true);
 
-        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet());
+        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(0));
         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-        main.makeBet(2*main.getPlayerBet());
+        main.makeBet(2*main.getPlayerBet().get(0), 0);
         playerBetLbl.setText((main.getPlayerBet()) + " VC$");
 
         hitButton(false, 0);
 
         if (playerScores.get(0).get(1) == 0 && playerScores.get(0).get(0) <= 21) {
-            stand(false, 0);
+            stand(false, 0, isDone);
         } else if (playerScores.get(0).get(1) <= 21 && playerScores.get(0).get(1) != 0) {
-            stand(false, 0);
+            stand(false, 0, isDone);
         }
     }
 
     @FXML public void playerSplit() {
-        if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet()) {
+        if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet().get(0)) {
             betFld.clear();
             betFld.setPromptText("Not enough money");
             return;
         }
 
-        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet());
+        VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(0));
         playerBetLbl.setText(main.getPlayerBet() + " (1); " + main.getPlayerBet() + " (2) ");
+        playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
         playerMainHand.setVisible(false);
         playerScoreLbl.setVisible(false);
 
+        splitBtn.setDisable(true);
         hitBtn.setDisable(true);
+        hitBtn1.setDisable(false);
+        hitBtn2.setDisable(false);
         hitBtn1.setVisible(true);
         hitBtn2.setVisible(true);
         standBtn.setDisable(true);
+        standBtn1.setDisable(false);
+        standBtn2.setDisable(false);
         standBtn1.setVisible(true);
         standBtn2.setVisible(true);
         doubleBtn.setDisable(true);
@@ -504,13 +520,13 @@ public class BlackjackController {
     }
 
     @FXML public void standButtonHandler() {
-        stand(false, 0);
+        stand(false, 0, isDone);
     }
     @FXML public void standButtonSplit1() {
-        stand(true, 0);
+        stand(true, 0, isDone);
     }
     @FXML public void standButtonSplit2() {
-        stand(true, 1);
+        stand(true, 1, isDone);
     }
 
     @FXML public void doubleButtonHandler() {
