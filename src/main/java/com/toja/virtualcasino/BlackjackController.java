@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BlackjackController {
     private final ArrayList<ArrayList<Integer>> playerScores = new ArrayList<>();
@@ -85,7 +86,7 @@ public class BlackjackController {
 
     // Initialisieren (wird automatisch sofort aufgerufen, aktualisiert Geldanzeige, etc)
     public void initialize() {
-        Image testImage = new Image(new File("..\\..\\..\\..\\resources\\com\\toja\\virtualcasino\\img\\blackjack\\cards\\2_of_spades.png").toURI().toString());
+        Image testImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/blackjack/cards/2_of_spades.png")));
         testImg.setImage(testImage);
 
         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
@@ -442,6 +443,7 @@ public class BlackjackController {
             // Nein, Wette zurücksetzen
             betFld.clear();
             betFld.setPromptText("Not enough money");
+            return;
         } else {
             // Ja, Wette angenommen -> Geld subtrahieren, Wette anzeigen, "Hit" anschalten
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - playerBet);
