@@ -15,44 +15,50 @@ SlotMachine - mind. 3 gleiche Symbole von links in einer Reihe (I ist ein Joker)
   Man gewinnt:
   
   Buchstaben A, F:
-    3x - 0,5x Einsatz
-    4x - 4x Einsatz
+    3x - 0,5x Einsatz,
+    4x - 4x Einsatz,
     5x - 15x Einsatz
     
   Buchstaben C, G, J:
-    3x - 0,5x Einsatz
-    4x - 3x Einsatz
+    3x - 0,5x Einsatz,
+    4x - 3x Einsatz,
     5x - 10x Einsatz
     
   Buchstabe B:
-    3x - 3x Einsatz
-    4x - 13x Einsatz
+    3x - 3x Einsatz,
+    4x - 13x Einsatz,
     5x - 42x Einsatz
     
   Buchstabe D:
-    3x - 4x Einsatz
-    4x - 24x Einsatz
+    3x - 4x Einsatz,
+    4x - 24x Einsatz,
     5x - 75x Einsatz
     
   Buchstabe E:
-    3x - 6x Einsatz
-    4x - 40x Einsatz
+    3x - 6x Einsatz,
+    4x - 40x Einsatz,
     5x - 125x Einsatz
     
   Buchstabe H:
-    3x - 10x Einsatz
-    4x - 75x Einsatz
+    3x - 10x Einsatz,
+    4x - 75x Einsatz,
     5x - 500x Einsatz
     
   Buchstabe I (5x): 75x Einsatz
   
   Es gibt 10 Gewinnlinien (# ist die Stelle, an der das Symbol vorkommen muss):
   1. x x x x x   2. # # # # #   3. x x x x x   4. # x x x #   5. x x # x x
+   
  .   # # # # #      x x x x x      x x x x x      x # x # x      x # x # x
+ 
  .   x x x x x      x x x x x      # # # # #      x x # x x      # x x x #
      
+     
+     
   6. x x x x x   7. x # # # x   8. x x x # #   9. # # x x x  10. # x x x x
+  
  .   # x x x #      # x x x #      x x # x x      x x # x x      x # # # x
+ 
  .   x # # # x      x x x x x      # # x x x      x x x # #      x x x x #
   
 WheelFort (Glücksrad) - Einsatz fest 25 VC$, Gewinn je nach erhaltenem Buchstaben:
