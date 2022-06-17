@@ -18,7 +18,7 @@ public class Blackjack {
     }
 
     public int makeBet(int amount, int hand) {
-        setPlayerBet(hand, amount);
+        setPlayerBet(amount, hand);
         return amount;
     }
 

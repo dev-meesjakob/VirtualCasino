@@ -12,6 +12,7 @@ public class VirtualCasino extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("virtualcasino-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setResizable(false);
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();

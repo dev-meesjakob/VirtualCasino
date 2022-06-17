@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -40,4 +42,9 @@
    <Button fx:id="standBtn2" layoutX="160.0" layoutY="250.0" mnemonicParsing="false" onAction="#standButtonSplit2" prefWidth="130.0" text="Stand" visible="false" />
    <Button fx:id="doubleBtn1" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#doubleButtonSplit1" prefWidth="130.0" text="Double" visible="false" />
    <Button fx:id="doubleBtn2" layoutX="160.0" layoutY="285.0" mnemonicParsing="false" onAction="#doubleButtonSplit2" prefWidth="130.0" text="Double" visible="false" />
+   <ImageView fx:id="testImg" fitHeight="150.0" fitWidth="200.0" layoutX="248.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/blackjack/cards/2_of_diamonds.png" />
+      </image>
+   </ImageView>
 </Pane>
