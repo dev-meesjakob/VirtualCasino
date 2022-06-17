@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class BlackjackController {
     private int dealerScore = 0;
     // Wurde das Spiel erstmals gestartet?
     private boolean isStart = true;
+
+    private ImageView lastPlayerCard;
+    private ImageView lastDealerCard;
 
     // UI Elemente
     @FXML
@@ -84,9 +88,21 @@ public class BlackjackController {
     @FXML
     private ImageView testImg;
 
+    @FXML private Pane mainPane;
+
     // Initialisieren (wird automatisch sofort aufgerufen, aktualisiert Geldanzeige, etc)
     public void initialize() {
+        lastPlayerCard = testImg;
         Image testImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/blackjack/cards/2_of_spades.png")));
+        ImageView test2 = new ImageView();
+        mainPane.getChildren().add(test2);
+        test2.setLayoutX(testImg.getLayoutX() + 17);
+        test2.setLayoutY(25);
+        test2.setFitWidth(75);
+        test2.setFitHeight(100);
+        testImg.setFitWidth(75);
+        testImg.setFitHeight(100);
+        test2.setImage(testImage);
         testImg.setImage(testImage);
 
         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
@@ -110,6 +126,21 @@ public class BlackjackController {
         finScores.add(0);
         isDone.add(false);
         isDone.add(false);
+    }
+
+    public void newCardDisplay(Card card, double xPos, boolean player) {
+        ImageView temp = new ImageView();
+        temp.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getFilePath()))));
+        temp.setLayoutX(xPos + 17);
+        temp.setLayoutY(25);
+        temp.setFitWidth(75);
+        temp.setFitHeight(100);
+
+        if (player) {
+            lastPlayerCard = temp;
+        } else {
+            lastDealerCard = temp;
+        }
     }
 
     // Spiel starten/neu starten
@@ -168,14 +199,14 @@ public class BlackjackController {
         // Spieler bekommt zwei Karten
         playerHands.add(new ArrayList<>());
 
-        playerHands.get(0).add(0, new Card(Card.Rank.ACE, Card.Suit.SPADES));
+        /*playerHands.get(0).add(0, new Card(Card.Rank.ACE, Card.Suit.SPADES));
         playerHands.get(0).add(1, new Card(Card.Rank.ACE, Card.Suit.CLUBS));
         playerMainHand.setText(playerHands.get(0).get(0).getNameString() + "\n");
         playerMainHand.setText(playerMainHand.getText() + playerHands.get(0).get(1).getNameString() + "\n");
-
-        /*for (int i = 0; i < 2; i++) {
+        */
+        for (int i = 0; i < 2; i++) {
             hitButton(false, 0);
-        }*/
+        }
 
         if (playerHands.get(0).get(0).getRank() == playerHands.get(0).get(1).getRank()) {
             splitBtn.setDisable(false);
@@ -197,12 +228,15 @@ public class BlackjackController {
         // Karte anzeigen & Verdoppeln ausschalten
         if (hand == 0 && split) {
             doubleBtn1.setDisable(true);
+            newCardDisplay(temp, lastPlayerCard.getX(), true);
             playerSplitHand1.setText(playerSplitHand1.getText() + temp.getNameString() + "\n");
         } else if (hand == 1) {
             doubleBtn2.setDisable(true);
+            newCardDisplay(temp, lastPlayerCard.getX(), true);
             playerSplitHand2.setText(playerSplitHand2.getText() + temp.getNameString() + "\n");
         } else {
             doubleBtn.setDisable(true);
+            newCardDisplay(temp, lastPlayerCard.getX(), true);
             playerMainHand.setText(playerMainHand.getText() + temp.getNameString() + "\n");
         }
 

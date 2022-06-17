@@ -44,8 +44,12 @@ public class Card {
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
-        this.filePath = rank.fileStart + suit.fileEnd;
+        this.filePath = "img/blackjack/cards/" + rank.fileStart + suit.fileEnd;
         this.nameString = rank.name + suit.name;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getNameString() {
