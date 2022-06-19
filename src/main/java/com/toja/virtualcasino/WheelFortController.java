@@ -11,6 +11,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class WheelFortController {
 
@@ -24,7 +25,7 @@ public class WheelFortController {
     private Label imgLabel;
 
     //Bild des Glücksrads wird definiert
-    Image wheelImg = new Image("http://www.gis-informatik.de/~torge.neuendorf/Bilder/wheelImg.png");
+    Image wheelImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/wheelFortWheel.png")));
     RotateTransition rotate = new RotateTransition();
     int rotation = -9;
     double time = 0;
@@ -41,7 +42,6 @@ public class WheelFortController {
         }
         imgLabel.setGraphic(new ImageView(wheelImg)); //Bild laden
         imgLabel.getStyleClass().add("wheel");
-        amountLabel.getStyleClass().add("rightAlignment");
     }
 
     @FXML //passiert bei Drücken auf den Startknopf

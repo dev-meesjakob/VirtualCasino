@@ -5,11 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SlotMachineController {
 
@@ -20,6 +23,8 @@ public class SlotMachineController {
     @FXML
     private ArrayList<TextArea> reels = new ArrayList<>(); //TextAreas für die Walzen
     @FXML
+    private ArrayList<ArrayList<Label>> reels2 = new ArrayList<>(); //Label für die Walzen
+    @FXML
     private Pane slotPane; //Hintergrund
     @FXML
     private TextField betFld; //Feld für den Einsatz des Spielers
@@ -27,6 +32,8 @@ public class SlotMachineController {
     private Label lineLabel; // Hilfslabel für die Ausgabe der gewonnenen Linien
     @FXML
     private Label gainLabel; //label für Anzeige des Gewinns
+
+    //ImageView wheelImg = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(""))));
 
     //Initialisieren des Fensters beim Starten
     public void initialize() {
@@ -45,8 +52,19 @@ public class SlotMachineController {
             reels.get(i).setPrefHeight(120.0);
             reels.get(i).setPrefWidth(90.0);
             reels.get(i).setLayoutX(40 + 95*i);
-            reels.get(i).getStyleClass().add("tafel");
             slotPane.getChildren().add(reels.get(i));
+        }
+        for (int i = 0; i < 5; i++) {
+            reels2.add(new ArrayList<>());
+            for (int j = 0; j < 3; j++) {
+                Label temp = new Label();
+                reels2.get(i).add(temp);
+                reels2.get(i).get(j).setLayoutY(48.0 + j*40);
+                reels2.get(i).get(j).setPrefHeight(30);
+                reels2.get(i).get(j).setPrefWidth(30);
+                reels2.get(i).get(j).setLayoutX(70 + 95 * i);
+                slotPane.getChildren().add(reels2.get(i).get(j));
+            }
         }
     }
 
@@ -65,9 +83,11 @@ public class SlotMachineController {
                 int gain = SlotMachine.spin(bet);
 
                 for (int i = 0; i < 5; i++) {
-                    reels.get(i).clear();
                     for (int x = 0; x < 3; x++) {
-                        reels.get(i).appendText(SlotMachine.machine.get(i).getFrontIcons().get(x) + "\n");
+                        ImageView symbol = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/slotsymbols/" + SlotMachine.machine.get(i).getFrontIcons().get(x) + ".png"))));
+                        symbol.setFitWidth(30);
+                        symbol.setFitHeight(30);
+                        reels2.get(i).get(x).setGraphic(symbol);
                     }
                 }
                 amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$");
