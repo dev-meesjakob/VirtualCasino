@@ -10,7 +10,7 @@ public class Reel {
         this.reelIcons = reelIcons;
     }
 
-    //Zufällige FrontIcons ausgeben - wird noch überarbeitet
+    //Zufällige FrontIcons ausgeben
     public void createFrontIcons() {
         if (!this.frontIcons.isEmpty()) {
             this.frontIcons.clear();

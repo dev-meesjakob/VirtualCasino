@@ -2,49 +2,55 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.BlackjackController">
-   <Label alignment="CENTER" layoutX="390.0" layoutY="15.0" prefWidth="130.0" text="Dealer's Cards" />
-   <TextArea fx:id="playerSplitHand1" editable="false" layoutX="15.0" layoutY="45.0" prefHeight="130.0" prefWidth="130.0" visible="false" />
-   <TextArea fx:id="playerSplitHand2" editable="false" layoutX="160.0" layoutY="45.0" prefHeight="130.0" prefWidth="130.0" visible="false" />
-   <TextField fx:id="betFld" layoutX="15.0" layoutY="330.0" prefWidth="130.0" promptText="Bet an Amount" />
-   <Button fx:id="betBtn" layoutX="160.0" layoutY="330.0" mnemonicParsing="false" onAction="#makeBet" prefWidth="130.0" text="Bet to Start" />
-   <Button fx:id="splitBtn" disable="true" layoutX="15.0" layoutY="370.0" mnemonicParsing="false" onAction="#playerSplit" prefWidth="130.0" text="Split" />
-   <Button fx:id="doubleBtn" layoutX="160.0" layoutY="370.0" mnemonicParsing="false" onAction="#doubleButtonHandler" prefWidth="130.0" text="Double" />
-   <TextArea fx:id="dealerCardDisplay" editable="false" layoutX="390.0" layoutY="45.0" prefHeight="130.0" prefWidth="130.0" />
-   <Label alignment="CENTER" layoutX="82.5" layoutY="15.0" prefWidth="130.0" text="Your Cards" />
-   <TextArea fx:id="playerMainHand" editable="false" layoutX="80.0" layoutY="45.0" prefHeight="130.0" prefWidth="130.0" />
-   <Button fx:id="hitBtn" layoutX="15.0" layoutY="410.0" mnemonicParsing="false" onAction="#hitButtonHandler" prefWidth="130.0" text="Hit" />
-   <Button fx:id="standBtn" layoutX="160.0" layoutY="410.0" mnemonicParsing="false" onAction="#standButtonHandler" prefWidth="130.0" text="Stand" />
-   <Label fx:id="playerScoreLbl" alignment="CENTER" layoutX="82.5" layoutY="190.0" prefWidth="130.0" text="Points: 0" />
-   <Label fx:id="dealerScoreLbl" alignment="CENTER" layoutX="390.0" layoutY="190.0" prefWidth="130.0" text="Points: 0" />
-   <Label fx:id="playerCurrencyLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="340.0" prefWidth="150.0" text="CurrAmount" textAlignment="CENTER">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toja.virtualcasino.BlackjackController">
+   <Label alignment="CENTER" layoutX="390.0" layoutY="10.0" prefHeight="10.0" prefWidth="130.0" text="Dealer's Cards" />
+   <TextField fx:id="betFld" layoutX="15.0" layoutY="330.0" prefWidth="135.0" promptText="Bet an Amount" />
+   <Button fx:id="betBtn" layoutX="160.0" layoutY="330.0" mnemonicParsing="false" onAction="#makeBet" prefWidth="135.0" text="Bet to Start" />
+   <Button fx:id="splitBtn" disable="true" layoutX="15.0" layoutY="370.0" mnemonicParsing="false" onAction="#playerSplit" prefWidth="135.0" text="Split" />
+   <Button fx:id="doubleBtn" disable="true" layoutX="160.0" layoutY="370.0" mnemonicParsing="false" onAction="#doubleButtonHandler" prefWidth="135.0" text="Double" />
+   <Label alignment="CENTER" layoutX="87.5" layoutY="10.0" prefHeight="10.0" prefWidth="135.0" text="Your Cards" />
+   <Button fx:id="hitBtn" layoutX="15.0" layoutY="410.0" mnemonicParsing="false" onAction="#hitButtonHandler" prefWidth="135.0" text="Hit" />
+   <Button fx:id="standBtn" layoutX="160.0" layoutY="410.0" mnemonicParsing="false" onAction="#standButtonHandler" prefWidth="135.0" text="Stand" />
+   <Label fx:id="playerScoreLbl" alignment="CENTER" layoutX="87.5" layoutY="125.0" prefHeight="10.0" prefWidth="130.0" text="(1) Points: 0" visible="false" />
+   <Label fx:id="dealerScoreLbl" alignment="CENTER" layoutX="390.0" layoutY="180.0" prefHeight="10.0" prefWidth="130.0" text="Points: 0" visible="false" />
+   <Label fx:id="playerCurrencyLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="340.0" prefWidth="285.0" text="CurrAmount" textAlignment="CENTER">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Label fx:id="playerBetLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="380.0" prefWidth="150.0" text="No bet yet" textAlignment="CENTER">
+   <Label fx:id="playerBetLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="380.0" prefWidth="285.0" text="No bet yet" textAlignment="CENTER">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Label fx:id="splitScoreLbl1" alignment="CENTER" layoutX="15.0" layoutY="190.0" prefWidth="130.0" text="Points: 0" visible="false" />
-   <Label fx:id="splitScoreLbl2" alignment="CENTER" layoutX="160.0" layoutY="190.0" prefWidth="130.0" text="Points: 0" visible="false" />
-   <Button fx:id="hitBtn1" layoutX="15.0" layoutY="215.0" mnemonicParsing="false" onAction="#hitButtonSplit1" prefWidth="130.0" text="Hit" visible="false" />
-   <Button fx:id="hitBtn2" layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#hitButtonSplit2" prefWidth="130.0" text="Hit" visible="false" />
-   <Button fx:id="standBtn1" layoutX="15.0" layoutY="250.0" mnemonicParsing="false" onAction="#standButtonSplit1" prefWidth="130.0" text="Stand" visible="false" />
-   <Button fx:id="standBtn2" layoutX="160.0" layoutY="250.0" mnemonicParsing="false" onAction="#standButtonSplit2" prefWidth="130.0" text="Stand" visible="false" />
-   <Button fx:id="doubleBtn1" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#doubleButtonSplit1" prefWidth="130.0" text="Double" visible="false" />
-   <Button fx:id="doubleBtn2" layoutX="160.0" layoutY="285.0" mnemonicParsing="false" onAction="#doubleButtonSplit2" prefWidth="130.0" text="Double" visible="false" />
-   <ImageView fx:id="testImg" fitHeight="150.0" fitWidth="200.0" layoutX="248.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@img/blackjack/cards/2_of_diamonds.png" />
-      </image>
+   <Label fx:id="splitScoreLbl" alignment="CENTER" layoutX="87.5" layoutY="240.0" prefHeight="10.0" prefWidth="135.0" text="(2) Points: 0" visible="false" />
+   <Button fx:id="hitBtn1" layoutX="15.0" layoutY="265.0" mnemonicParsing="false" onAction="#hitButtonSplit1" prefWidth="65.0" text="(1) Hit" visible="false" />
+   <Button fx:id="hitBtn2" layoutX="160.0" layoutY="265.0" mnemonicParsing="false" onAction="#hitButtonSplit2" prefWidth="65.0" text="(2) Hit" visible="false" />
+   <Button fx:id="standBtn1" layoutX="85.0" layoutY="265.0" mnemonicParsing="false" onAction="#standButtonSplit1" prefWidth="65.0" text="(1) Stand" visible="false" />
+   <Button fx:id="standBtn2" layoutX="230.0" layoutY="265.0" mnemonicParsing="false" onAction="#standButtonSplit2" prefWidth="65.0" text="(2) Stand" visible="false" />
+   <Button fx:id="doubleBtn1" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#doubleButtonSplit1" prefWidth="135.0" text="(1) Double" visible="false" />
+   <Button fx:id="doubleBtn2" layoutX="160.0" layoutY="295.0" mnemonicParsing="false" onAction="#doubleButtonSplit2" prefWidth="135.0" text="(2) Double" visible="false" />
+   <ImageView fx:id="playerHand1" fitHeight="94.38" fitWidth="65.0" layoutX="-2.0" layoutY="25.0" pickOnBounds="true"
+              preserveRatio="true" visible="false">
+      <Image url="@img/blackjack/cards/2_of_diamonds.png"/>
    </ImageView>
+   <ImageView fx:id="playerHand2" fitHeight="94.38" fitWidth="65.0" layoutX="-2.0" layoutY="145.0" pickOnBounds="true"
+              preserveRatio="true" visible="false">
+      <Image url="@img/blackjack/cards/2_of_diamonds.png"/>
+   </ImageView>
+   <ImageView fx:id="dealerHandDisplay" fitHeight="145.2" fitWidth="100.0" layoutX="308.0" layoutY="30.0"
+              pickOnBounds="true" preserveRatio="true" visible="false">
+      <Image url="@img/blackjack/cards/2_of_diamonds.png"/>
+   </ImageView>
+   <Label fx:id="resultLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="260.0" prefWidth="285.0" text="GameResult" textAlignment="CENTER" visible="false">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
 </Pane>

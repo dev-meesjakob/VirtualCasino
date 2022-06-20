@@ -2,6 +2,6 @@
     -fx-rotate: -9;
 }
 
-.rightAlignment {
+#amountLabel {
     -fx-alignment: baseline-right;
 }
