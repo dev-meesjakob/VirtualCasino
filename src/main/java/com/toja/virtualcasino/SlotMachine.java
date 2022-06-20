@@ -37,6 +37,7 @@ public class SlotMachine {
         //win gibt an, welchen Anteil seines Einsatzes der Spieler als Gewinn zurückbekommt:
         //z.B. 0 - gar nichts, 0.5 - die Hälfte, 500 - das Fünfhundertfache (Hauptgewinn)
         //für jede Gewinnlinie (1 - 10) wird bestimmt, ob (und wie viel) gewonnen wurde
+        lines.clear();
         double win = 0;
         win = win + lineCheck(1, 1, 1, 1, 1, 1);
         win = win + lineCheck(2, 0, 0, 0, 0, 0);
@@ -145,7 +146,6 @@ public class SlotMachine {
         }
         //Wiedergeben, ob diese Linie gewonnen wurde
         if (back != 0) {
-            lines.clear();
             lines.add(line);
         }
         return back;

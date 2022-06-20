@@ -11,6 +11,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class WheelFortController {
 
@@ -24,7 +25,7 @@ public class WheelFortController {
     private Label imgLabel;
 
     //Bild des Glücksrads wird definiert
-    Image wheelImg = new Image("http://www.gis-informatik.de/~torge.neuendorf/Bilder/wheelImg.png");
+    Image wheelImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/wheelImg.png")));;
     RotateTransition rotate = new RotateTransition();
     int rotation = -9;
     double time = 0;
@@ -65,8 +66,9 @@ public class WheelFortController {
         spinBtn.setDisable(true);
         valLabel.setText("");
 
+        //Pause machen, bis sich das Rad
         PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
-        delay.setOnFinished( event -> afterSpin() );
+        delay.setOnFinished( event -> afterSpin() ); //nach der Pause mit afterSpin weitermachen
         delay.play();
     }
 

@@ -24,9 +24,9 @@ public class SlotMachineController {
     @FXML
     private TextField betFld; //Feld für den Einsatz des Spielers
     @FXML
-    private Label lineLabel; // Hilfslabel für die Ausgabe der gewonnenen Linien
-    @FXML
     private Label gainLabel; //label für Anzeige des Gewinns
+    @FXML
+    private TextArea lineArea; //Area für die gewonnenen Linien
 
     //Initialisieren des Fensters beim Starten
     public void initialize() {
@@ -35,6 +35,7 @@ public class SlotMachineController {
         if (VirtualCasinoController.getCurrAmount() == 0) {
             playBtn.setDisable(true); //Btn "ausschalten" bei keinem Geld
         }
+        amountLabel.getStyleClass().add("rightAlignment");
 
         //TextAreas für die einzelnen Walzen erstellen
         for (int i = 0; i < 5; i++) {
@@ -45,22 +46,32 @@ public class SlotMachineController {
             reels.get(i).setPrefHeight(120.0);
             reels.get(i).setPrefWidth(90.0);
             reels.get(i).setLayoutX(40 + 95*i);
-            reels.get(i).getStyleClass().add("tafel");
             slotPane.getChildren().add(reels.get(i));
         }
     }
 
     //läuft ab bei Drücken auf den Knopf
     public void playSlot() {
-        //prüft zu Beginn, ob Einsatz eingegeben wurde
-        if (betFld.getText().equals("")) {
-            gainLabel.setText("Wetteinsatz eingeben!"); //Wenn der Spieler nichts eingibt
-        } else if (!betFld.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
-            gainLabel.setText("Nur Zahlen eingeben!"); //Wenn der Spieler Quatsch eingibt
-        } else if (Integer.parseInt(betFld.getText()) > VirtualCasinoController.getCurrAmount()) {
-            gainLabel.setText("Nicht genug Geld!"); //Wenn der Spieler etwas zu hohes eingibt
-        } else{
-                int bet = Integer.parseInt(betFld.getText());
+        int bet;
+        try {
+            bet = Integer.parseInt(betFld.getText());
+            if (bet <= 4) {
+                betFld.clear();
+                betFld.setPromptText("Einsatz mind. 5 VC$");
+                return;
+            } else if (bet > VirtualCasinoController.getCurrAmount()) {
+                betFld.clear();
+                betFld.setPromptText("Nicht genug Geld.");
+                return;
+            } else {
+                betFld.setPromptText("");
+            }
+        } catch (NumberFormatException e) {
+            betFld.clear();
+            betFld.setPromptText("Nur Zahlen eingeben.");
+            return;
+        }
+
                 //ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
                 int gain = SlotMachine.spin(bet);
 
@@ -72,7 +83,11 @@ public class SlotMachineController {
                 }
                 amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$");
                 if(!SlotMachine.lines.isEmpty()) {
-                    lineLabel.setText("Gewonnene Linien: " + SlotMachine.lines.get(0));
+                    lineArea.clear();
+                    lineArea.appendText("Gewonnene Linien: \n");
+                    for (int i = 0; i < SlotMachine.lines.size(); i++) {
+                        lineArea.appendText(SlotMachine.lines.get(i) + "\n");
+                    }
                 }
                 //Ausgeben des Gewinns bzw. ob zu wenig Geld da ist
                 if (gain > 0) {
@@ -83,6 +98,6 @@ public class SlotMachineController {
                 if (VirtualCasinoController.getCurrAmount() == 0) {
                     playBtn.setDisable(true);
                 }
-            }
+
         }
     }

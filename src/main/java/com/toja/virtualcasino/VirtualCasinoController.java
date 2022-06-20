@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class VirtualCasinoController {
 
@@ -16,6 +17,7 @@ public class VirtualCasinoController {
         Stage slotMachineStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("slotmachine-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 550, 295);
+        scene.getStylesheets().add((getClass().getResource("css/slotMachine.css")).toExternalForm());
         slotMachineStage.setResizable(false);
         slotMachineStage.setTitle("Slot Machine");
         slotMachineStage.setScene(scene);
@@ -27,7 +29,7 @@ public class VirtualCasinoController {
         Stage wheelFortStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("wheelfort-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 300);
-        scene.getStylesheets().add("http://www.gis-informatik.de/~torge.neuendorf/wheelFort.css");
+        scene.getStylesheets().add((getClass().getResource("css/wheelFort.css")).toExternalForm());
         wheelFortStage.setResizable(false);
         wheelFortStage.setTitle("Wheel of Fortune");
         wheelFortStage.setScene(scene);
