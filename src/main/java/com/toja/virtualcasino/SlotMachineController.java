@@ -1,5 +1,6 @@
 package com.toja.virtualcasino;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,6 +34,8 @@ public class SlotMachineController {
     private Label gainLabel; //label für Anzeige des Gewinns
     @FXML
     private TextArea lineArea; //Area für die gewonnenen Linien
+
+    TranslateTransition reelSpin = new TranslateTransition();
 
     //ImageView wheelImg = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(""))));
 
@@ -65,6 +69,12 @@ public class SlotMachineController {
                 reels2.get(i).get(j).setPrefWidth(30);
                 reels2.get(i).get(j).setLayoutX(70 + 95 * i);
                 slotPane.getChildren().add(reels2.get(i).get(j));
+
+                SlotMachine.machine.get(i).createFrontIcons();
+                ImageView symbol = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/slotsymbols/" + SlotMachine.machine.get(i).getFrontIcons().get(j) + ".png"))));
+                symbol.setFitWidth(30);
+                symbol.setFitHeight(30);
+                reels2.get(i).get(j).setGraphic(symbol);
             }
         }
     }
@@ -91,8 +101,16 @@ public class SlotMachineController {
             return;
         }
 
-                //ArrayList<String> allIcons = SlotMachine.spin(bet); //Aufrufen der eigentlichen Spiellogik
-                int gain = SlotMachine.spin(bet);
+        int gain = SlotMachine.spin(bet);
+
+        //Für das "Drehen" der Walzen
+        /*reelSpin.setNode(reels2.get(0).get(0));
+        reelSpin.setNode(reels2.get(0).get(1));
+        reelSpin.setDuration(Duration.millis(100));
+        reelSpin.setFromY(-10.0);
+        reelSpin.setByY(30);
+        reelSpin.setCycleCount(15);
+        reelSpin.play();*/
 
                 for (int i = 0; i < 5; i++) {
                     for (int x = 0; x < 3; x++) {

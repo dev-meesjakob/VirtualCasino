@@ -11,9 +11,6 @@ public class SlotMachine {
     public static void machineCreate() {
         //Erstellen einer Liste mit 10 Symbolen (Buchstaben A - J) und Erstellen der Walzen
         ArrayList<String> list = new ArrayList<>();
-        /*for (int i = 0; i < 10; i++) {
-            list.add("" + (char) (i+65));
-        }*/
         list.add("apple");
         list.add("bell");
         list.add("cherry");

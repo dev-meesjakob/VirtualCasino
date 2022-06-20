@@ -16,19 +16,18 @@ import java.util.Objects;
 public class WheelFortController {
 
     @FXML
-    private Label valLabel;
+    private Label valLabel; //Für Anzeige des Gewinns
     @FXML
-    private Label amountLabel;
+    private Label amountLabel; //Für Anzeige des Kontostands
     @FXML
-    private Button spinBtn;
+    private Button spinBtn; //Zum Drehen des Rads
     @FXML
-    private Label imgLabel;
+    private Label imgLabel; //Zur Anzeige des Rads
 
     //Bild des Glücksrads wird definiert
-    Image wheelImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/wheelImg.png")));;
+    Image wheelImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/wheelFortWheel.png")));;
     RotateTransition rotate = new RotateTransition();
     int rotation = -9;
-    double time = 0;
     WheelField field;
 
 
@@ -62,14 +61,9 @@ public class WheelFortController {
             rotate.setByAngle(-1080 - (rotationBefore - rotation));
         }
         rotate.play(); //Drehung abspielen
-        time = System.currentTimeMillis();
         spinBtn.setDisable(true);
         valLabel.setText("");
-
-        //Pause machen, bis sich das Rad
-        PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
-        delay.setOnFinished( event -> afterSpin() ); //nach der Pause mit afterSpin weitermachen
-        delay.play();
+        rotate.setOnFinished(event -> afterSpin()); //Pause machen, bis sich das Rad fertig gedreht hat
     }
 
     public void afterSpin() {
