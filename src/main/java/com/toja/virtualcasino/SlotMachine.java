@@ -56,7 +56,7 @@ public class SlotMachine {
         win = win + lineCheck(7, 1, 0, 0, 0, 1);
         win = win + lineCheck(8, 2, 2, 1, 0, 0);
         win = win + lineCheck(9, 0, 0, 1, 2, 2);
-        win = win + lineCheck(10, 0, 1, 1, 1, 2);
+        //win = win + lineCheck(10, 0, 1, 1, 1, 2);
         return win;
     }
 
