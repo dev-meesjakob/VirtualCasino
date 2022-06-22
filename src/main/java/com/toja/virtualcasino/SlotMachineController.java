@@ -1,5 +1,6 @@
 package com.toja.virtualcasino;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class SlotMachineController {
     private VBox box;
 
     TranslateTransition reelSpin = new TranslateTransition();
+    FadeTransition lineFade = new FadeTransition();
 
     //ImageView wheelImg = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(""))));
 
@@ -98,9 +100,18 @@ public class SlotMachineController {
 
     }
 
+    //Anzeige aller möglichen Gewinnlinien
+    public void showLines() {
+        for (int i = 0; i < 9; i++) {
+            lines.get(i).setVisible(true);
+            lines.get(i).setOpacity(0.5);
+        }
+    }
+
     //läuft ab bei Drücken auf den Knopf
     public void playSlot() {
         int bet;
+        //Prüfen, ob ein sinnvoller Einsatz angegeben wurde
         try {
             bet = Integer.parseInt(betFld.getText());
             if (bet <= 4) {
@@ -120,11 +131,22 @@ public class SlotMachineController {
             return;
         }
 
+        //Gewinnlinien unsichtbar machen
         for (int i = 0; i < 9; i++) {
             lines.get(i).setVisible(false);
+            lines.get(i).setOpacity(1.0);
         }
 
+        //Eigentliche Spiellogik
         int gain = SlotMachine.spin(bet);
+
+        /*lineFade.setNode(lines.get(0));
+        lineFade.setDuration(Duration.millis(500));
+        lineFade.setFromValue(1.0);
+        lineFade.setByValue(0.5);
+        lineFade.setCycleCount(3);
+        lineFade.setAutoReverse(true);
+        lineFade.play();*/
 
         //Für das "Drehen" der Walzen
         /*reelSpin.setNode(reels2.get(0).get(0));
@@ -137,6 +159,7 @@ public class SlotMachineController {
         reelSpin.play();
         reelSpin.setOnFinished(event -> reels2.get(0).get(1).setLayoutY(88));*/
 
+                //Anzeige der bekommenen Symbole
                 for (int i = 0; i < 5; i++) {
                     for (int x = 0; x < 3; x++) {
                         ImageView symbol = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/slotsymbols/" + SlotMachine.machine.get(i).getFrontIcons().get(x) + ".png"))));
@@ -145,6 +168,7 @@ public class SlotMachineController {
                         reels2.get(i).get(x).setGraphic(symbol);
                     }
                 }
+                //Anzeige der gewonnenen Gewinnlinien (textlich und visuell)
                 amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$");
                 if(!SlotMachine.lines.isEmpty()) {
                     lineArea.clear();
@@ -154,7 +178,7 @@ public class SlotMachineController {
                         lines.get(SlotMachine.lines.get(i) - 1).setVisible(true);
                     }
                 }
-                //Ausgeben des Gewinns bzw. ob zu wenig Geld da ist
+                //Ausgeben des Gewinns
                 if (gain > 0) {
                     gainLabel.setText("Gewinn: " + gain + " VC$");
                 } else {

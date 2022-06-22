@@ -10,7 +10,7 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label fx:id="amountLabel" layoutX="450.0" layoutY="12.0" prefWidth="95.0" text="100$" />
+      <Label fx:id="amountLabel" layoutX="420.0" layoutY="12.0" prefWidth="125.0" text="100$" />
       <TextField fx:id="betFld" layoutX="256.0" layoutY="254.0" prefHeight="25.0" prefWidth="130.0" />
       <Label layoutX="164.0" layoutY="256.0" text="Dein Einsatz:">
          <font>
@@ -27,5 +27,6 @@
             </Label>
          </children>
       </VBox>
+      <Button layoutX="400.0" layoutY="207.0" mnemonicParsing="false" onAction="#showLines" text="Gewinnlinien anzeigen" />
    </children>
 </Pane>
