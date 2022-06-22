@@ -1,9 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="VirtualCasino:jar">
+  <artifact type="jar" build-on-make="true" name="VirtualCasino:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/VirtualCasino_jar</output-path>
     <root id="archive" name="VirtualCasino.jar">
       <element id="module-output" name="VirtualCasino" />
-      <element id="library" level="project" name="javafx-controls-18-ea+6-win" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx.web.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx.base.jar" path-in-jar="/" />
@@ -12,11 +11,6 @@
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx.controls.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/lib/javafx-sdk-17.0.2/lib/javafx.graphics.jar" path-in-jar="/" />
-      <element id="library" level="project" name="javafx-graphics-18-ea+6-win" />
-      <element id="library" level="project" name="javafx-fxml-18-ea+6-win" />
-      <element id="library" level="project" name="javafx-sdk-17.0" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.0.1/javafx-controls-17.0.0.1.jar" path-in-jar="/" />
-      <element id="library" level="project" name="javafx-base-18-ea+6-win" />
     </root>
   </artifact>
 </component>

@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="javafx-controls-18-ea+6-win">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/18-ea+6/javafx-controls-18-ea+6-win.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
