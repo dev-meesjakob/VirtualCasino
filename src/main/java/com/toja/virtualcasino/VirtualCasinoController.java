@@ -69,6 +69,8 @@ public class VirtualCasinoController {
         // Grenze Geld auf 999 Mio. festgelegt
         if (amount > 999999999) {
             currAmount = 999999999;
+        } else {
+            currAmount = amount;
         }
     }
 

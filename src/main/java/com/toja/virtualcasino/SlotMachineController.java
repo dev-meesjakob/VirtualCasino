@@ -86,7 +86,7 @@ public class SlotMachineController {
             }
         }
         for (int i = 0; i < 9; i++) {
-            //Gewinnlinien laden und anzeigen
+            //Gewinnlinien laden und nicht anzeigen
             Label temp = new Label();
             lines.add(temp);
             lines.get(i).setLayoutY(38);
