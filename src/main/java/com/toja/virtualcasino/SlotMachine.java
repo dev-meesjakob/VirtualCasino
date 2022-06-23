@@ -12,15 +12,15 @@ public class SlotMachine {
         //Erstellen einer Liste mit 10 Symbolen (Buchstaben A - J) und Erstellen der Walzen
         ArrayList<String> list = new ArrayList<>();
         list.add("apple");
-        list.add("bell");
-        list.add("cherry");
-        list.add("clover");
-        list.add("diamond");
-        list.add("grapes");
         list.add("lemon");
+        list.add("grapes");
+        list.add("cherry");
         list.add("melon");
-        list.add("seven");
+        list.add("bell");
         list.add("star");
+        list.add("diamond");
+        list.add("seven");
+        list.add("clover");
 
         for (int i = 0; i < 5; i++) {
             Reel temp = new Reel(list);

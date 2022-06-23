@@ -7,6 +7,36 @@
     -fx-font-family: "Roboto";
 }
 
+.w-gewinn {
+    -fx-text-fill: #2a0aff;
+    -fx-font-size: 24px;
+}
+
+.n-gewinn {
+    -fx-text-fill: #9e1215;
+    -fx-font-size: 16px;
+}
+
+.m-gewinn {
+    -fx-text-fill: #ffb54f;
+    -fx-font-size: 20px;
+}
+
+.r-gewinn {
+    -fx-text-fill: #009708;
+    -fx-font-size: 16px;
+}
+
+.g-gewinn {
+    -fx-text-fill: #ff14a1;
+    -fx-font-size: 16px;
+}
+
+.k-gewinn {
+    -fx-text-fill: #000000;
+    -fx-font-size: 12px;
+}
+
 #amountLabel {
     -fx-alignment: baseline-right;
 }
