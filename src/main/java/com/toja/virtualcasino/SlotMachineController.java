@@ -37,8 +37,6 @@ public class SlotMachineController {
     @FXML
     private Label gainLabel; //label für Anzeige des Gewinns
     @FXML
-    private TextArea lineArea; //Area für die gewonnenen Linien
-    @FXML
     private VBox box;
 
 
@@ -82,7 +80,7 @@ public class SlotMachineController {
             }
         }
         for (int i = 0; i < 9; i++) {
-            //Gewinnlinien laden und anzeigen
+            //Gewinnlinien laden und nicht anzeigen
             Label temp = new Label();
             lines.add(temp);
             lines.get(i).setLayoutY(38);
@@ -150,18 +148,35 @@ public class SlotMachineController {
                 //Anzeige der gewonnenen Gewinnlinien (textlich und visuell)
                 amountLabel.setText(VirtualCasinoController.getCurrAmount() + " VC$");
                 if(!SlotMachine.lines.isEmpty()) {
-                    lineArea.clear();
-                    lineArea.appendText("Gewonnene Linien: \n");
                     for (int i = 0; i < SlotMachine.lines.size(); i++) {
-                        lineArea.appendText(SlotMachine.lines.get(i) + "\n");
                         lines.get(SlotMachine.lines.get(i) - 1).setVisible(true);
                     }
                 }
                 //Ausgeben des Gewinns
-                if (gain > 0) {
+                if (gain > bet * 250) {
+                    gainLabel.setText("Wahnsinnsgewinn: " + gain + " VC$");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("w-gewinn");
+                } else if (gain > bet * 100){
+                    gainLabel.setText("Megagewinn: " + gain + " VC$");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("m-gewinn");
+                } else if (gain > bet * 50){
+                    gainLabel.setText("Riesengewinn: " + gain + " VC$");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("r-gewinn");
+                } else if (gain > bet * 20){
+                    gainLabel.setText("Großer Gewinn: " + gain + " VC$");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("g-gewinn");
+                } else if (gain > 0){
                     gainLabel.setText("Gewinn: " + gain + " VC$");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("n-gewinn");
                 } else {
                     gainLabel.setText("Kein Gewinn.");
+                    gainLabel.getStyleClass().clear();
+                    gainLabel.getStyleClass().add("k-gewinn");
                 }
                 if (VirtualCasinoController.getCurrAmount() == 0) {
                     playBtn.setDisable(true);

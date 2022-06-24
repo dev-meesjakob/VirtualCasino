@@ -17,10 +17,6 @@ public class Blackjack {
         this.dealerCards = dealerCards;
     }
 
-    public int makeBet(int amount, int hand) {
-        setPlayerBet(amount, hand);
-        return amount;
-    }
 
     public static Card drawCard(ArrayList<Card> toDraw) {
         Random r = new Random();
@@ -30,7 +26,6 @@ public class Blackjack {
 
         return temp;
     }
-
 
     public ArrayList<Integer> getPlayerBet() {
         return playerBet;
@@ -42,10 +37,6 @@ public class Blackjack {
 
     public ArrayList<ArrayList<Card>> getPlayerHands() {
         return playerHands;
-    }
-
-    public void setPlayerHands(ArrayList<ArrayList<Card>> playerHands) {
-        this.playerHands = playerHands;
     }
 
     public ArrayList<Card> getDealerCards() {

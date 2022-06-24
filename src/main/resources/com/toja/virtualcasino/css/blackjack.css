@@ -5,12 +5,5 @@
 
 .text {
     -fx-font-family: "Roboto";
-}
-
-.wheel {
-    -fx-rotate: -9;
-}
-
-#amountLabel {
-    -fx-alignment: baseline-right;
+    -fx-font-size: 24px;
 }

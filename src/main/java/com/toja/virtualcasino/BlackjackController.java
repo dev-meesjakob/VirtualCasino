@@ -492,7 +492,7 @@ public class BlackjackController {
             // Ja, Wette angenommen -> Geld subtrahieren, Wette anzeigen, "Hit" anschalten
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - playerBet);
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-            main.makeBet(playerBet, 0);
+            main.setPlayerBet(playerBet, 0);
             playerBetLbl.setText((main.getPlayerBet().get(0)) + " VC$");
             betBtn.setDisable(true);
             hitBtn.setDisable(false);
@@ -505,19 +505,21 @@ public class BlackjackController {
     @FXML
     public void playerDouble(boolean split, int hand) {
 
+        // Geld des Spieler überprüft
         if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet().get(0)) {
             betFld.clear();
             betFld.setPromptText("Not enough money");
             return;
         }
 
+        // Split Handling
         if (split && hand == 0) {
             hitBtn1.setDisable(true);
             doubleBtn1.setDisable(true);
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(0));
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-            main.makeBet(2 * main.getPlayerBet().get(0), 0);
-            playerBetLbl.setText((main.getPlayerBet()) + " VC$");
+            main.setPlayerBet(2 * main.getPlayerBet().get(0), 0);
+            playerBetLbl.setText((main.getPlayerBet().get(0)) + " VC$");
             hitButton(true, 0);
 
         } else if (hand == 1) {
@@ -525,8 +527,8 @@ public class BlackjackController {
             doubleBtn2.setDisable(true);
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(1));
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-            main.makeBet(2 * main.getPlayerBet().get(1), 1);
-            playerBetLbl.setText((main.getPlayerBet()) + " VC$");
+            main.setPlayerBet(2 * main.getPlayerBet().get(1), 1);
+            playerBetLbl.setText((main.getPlayerBet().get(0)) + " VC$");
             hitButton(true, 1);
 
         } else {
@@ -534,8 +536,8 @@ public class BlackjackController {
             doubleBtn.setDisable(true);
             VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(0));
             playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
-            main.makeBet(2 * main.getPlayerBet().get(0), 0);
-            playerBetLbl.setText((main.getPlayerBet()) + " VC$");
+            main.setPlayerBet(2 * main.getPlayerBet().get(0), 0);
+            playerBetLbl.setText((main.getPlayerBet().get(0)) + " VC$");
             hitButton(false, 0);
         }
 
@@ -546,6 +548,7 @@ public class BlackjackController {
         }
 
         isDone.set(hand, true);
+        // Die Hand ist nach dem verdoppeln automatisch beendet
         if (isDone.get(0) && isDone.get(1)) {
             stand(split, hand, isDone);
         }
@@ -553,17 +556,23 @@ public class BlackjackController {
 
     @FXML
     public void playerSplit() {
+        // Split der Hand bei Karten gleichen Ranges
+
+        // Geld des Spielers überprüfen
         if (VirtualCasinoController.getCurrAmount() < main.getPlayerBet().get(0)) {
             betFld.clear();
             betFld.setPromptText("Not enough money");
             return;
         }
 
+        // Einsatz für zweite Hand
         VirtualCasinoController.setCurrAmount(VirtualCasinoController.getCurrAmount() - main.getPlayerBet().get(0));
         main.setPlayerBet(main.getPlayerBet().get(0), 1);
         playerBetLbl.setText("(1) " + main.getPlayerBet().get(0) + " VC$; (2) " + main.getPlayerBet().get(1) + " VC$");
         playerCurrencyLbl.setText(VirtualCasinoController.getCurrAmount() + " VC$");
 
+
+        // UI für eine Hand ausschalten und für zwei Hände anschalten
         splitBtn.setDisable(true);
         hitBtn.setDisable(true);
         standBtn.setDisable(true);
@@ -594,17 +603,22 @@ public class BlackjackController {
         playerHands.get(1).set(0, playerHands.get(0).get(1));
         playerHands.get(0).remove(1);
 
+        // Jede Hand bekommt eine weitere Karte
         for (int i = 0; i < 2; i++) {
             hitButton(true, i);
         }
+
+        // Verdoppeln ist nach Split möglich
         doubleBtn1.setDisable(false);
         doubleBtn2.setDisable(false);
 
+        // Punkte ArrayList auf 0 setzen
         playerScores.get(0).set(0, 0);
         playerScores.get(0).set(1, 0);
         playerScores.get(1).set(0, 0);
         playerScores.get(1).set(1, 0);
 
+        // Hände bewerten
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 // Zählung
@@ -628,6 +642,8 @@ public class BlackjackController {
             }
         }
     }
+
+    // Button Handler für Funktionen die Parameter benötigen
 
     @FXML
     public void hitButtonHandler() {

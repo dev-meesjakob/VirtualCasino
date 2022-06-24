@@ -3,6 +3,7 @@ package com.toja.virtualcasino;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -10,10 +11,12 @@ import java.util.Objects;
 
 public class VirtualCasinoController {
 
+    // 100 VC$ am Anfang
     public static int currAmount = 100;
 
     @FXML
     private void startSlotMachine() throws IOException {
+        // Starte Glücksspielautomaten
         Stage slotMachineStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("slotmachine-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 550, 295);
@@ -26,6 +29,7 @@ public class VirtualCasinoController {
 
     @FXML
     private void startWheelFort() throws IOException {
+        // Starte Glücksrad
         Stage wheelFortStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("wheelfort-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 300);
@@ -38,17 +42,20 @@ public class VirtualCasinoController {
 
     @FXML
     private void startBlackjack() throws IOException {
+        // Starte Blackjack
         Stage blackjackStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("blackjack-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
         blackjackStage.setResizable(false);
         blackjackStage.setTitle("Blackjack");
         blackjackStage.setScene(scene);
+        blackjackStage.getIcons().add(new Image(Objects.requireNonNull(VirtualCasino.class.getResourceAsStream("img/BlackjackLogo.png"))));
         blackjackStage.show();
     }
 
     @FXML
     private void startCurrMenu() throws IOException {
+        // Starte Währungsmenü
         Stage currencyStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(VirtualCasino.class.getResource("currencymenu-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
@@ -59,7 +66,12 @@ public class VirtualCasinoController {
     }
 
     static void setCurrAmount (int amount) {
-        currAmount = amount;
+        // Grenze Geld auf 999 Mio. festgelegt
+        if (amount > 999999999) {
+            currAmount = 999999999;
+        } else {
+            currAmount = amount;
+        }
     }
 
     static int getCurrAmount () {

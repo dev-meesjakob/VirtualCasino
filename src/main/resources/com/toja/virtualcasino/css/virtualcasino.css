@@ -5,12 +5,13 @@
 
 .text {
     -fx-font-family: "Roboto";
+    -fx-font-size: 24px;
 }
 
-.wheel {
-    -fx-rotate: -9;
+.button {
+    -fx-background-color: transparent;
 }
 
-#amountLabel {
-    -fx-alignment: baseline-right;
+.button:hover {
+    -fx-background-color: lightgrey;
 }

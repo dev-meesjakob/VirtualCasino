@@ -8,30 +8,20 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javafx-sdk-17" level="application" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/.jdks/javafx-sdk-17.0.2" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/.jdks/javafx-sdk-17.0.2" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="javafx-sdk-17.0" level="project" />
-    <orderEntry type="library" name="javafx-fxml-18-ea+6-win" level="project" />
     <orderEntry type="library" name="javafx-controls-18-ea+6-win" level="project" />
-    <orderEntry type="library" name="javafx-base-18-ea+6-win" level="project" />
-    <orderEntry type="library" name="javafx-graphics-18-ea+6-win" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:17.0.0.1" level="project" />
+    <orderEntry type="library" name="javafx-fxml-18-ea+6-win" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
+    <orderEntry type="library" name="javafx-base-18-ea+6" level="project" />
+    <orderEntry type="library" name="javafx-base-18-ea+6-win1" level="project" />
+    <orderEntry type="library" name="javafx-graphics-18-ea+6-win1" level="project" />
   </component>
 </module>

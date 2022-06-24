@@ -17,7 +17,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextArea fx:id="lineArea" editable="false" layoutX="14.0" layoutY="195.0" prefHeight="91.0" prefWidth="124.0" />
       <VBox fx:id="box" alignment="CENTER" layoutX="160.0" layoutY="167.0" prefHeight="30.0" prefWidth="230.0">
          <children>
             <Label fx:id="gainLabel">
@@ -27,6 +26,6 @@
             </Label>
          </children>
       </VBox>
-      <Button layoutX="400.0" layoutY="207.0" mnemonicParsing="false" onAction="#showLines" text="Gewinnlinien anzeigen" />
+      <Button layoutX="14.0" layoutY="207.0" mnemonicParsing="false" onAction="#showLines" text="Gewinnlinien anzeigen" />
    </children>
 </Pane>
