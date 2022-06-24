@@ -41,10 +41,6 @@ public class SlotMachineController {
     @FXML
     private VBox box;
 
-    TranslateTransition reelSpin = new TranslateTransition();
-    FadeTransition lineFade = new FadeTransition();
-
-    //ImageView wheelImg = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(""))));
 
     //Initialisieren des Fensters beim Starten
     public void initialize() {
@@ -140,24 +136,7 @@ public class SlotMachineController {
         //Eigentliche Spiellogik
         int gain = SlotMachine.spin(bet);
 
-        /*lineFade.setNode(lines.get(0));
-        lineFade.setDuration(Duration.millis(500));
-        lineFade.setFromValue(1.0);
-        lineFade.setByValue(0.5);
-        lineFade.setCycleCount(3);
-        lineFade.setAutoReverse(true);
-        lineFade.play();*/
 
-        //Für das "Drehen" der Walzen
-        /*reelSpin.setNode(reels2.get(0).get(0));
-        reelSpin.setNode(reels2.get(0).get(1));
-        reelSpin.setAutoReverse(true);
-        reelSpin.setDuration(Duration.millis(20));
-        reelSpin.setFromY(-10.0);
-        reelSpin.setByY(20);
-        reelSpin.setCycleCount(20);
-        reelSpin.play();
-        reelSpin.setOnFinished(event -> reels2.get(0).get(1).setLayoutY(88));*/
 
                 //Anzeige der bekommenen Symbole
                 for (int i = 0; i < 5; i++) {
