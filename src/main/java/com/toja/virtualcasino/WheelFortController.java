@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
@@ -46,6 +47,7 @@ public class WheelFortController {
 
     @FXML //passiert bei Drücken auf den Startknopf
     public void spin() {
+
         amountLabel.setText((VirtualCasinoController.getCurrAmount() - 25) + " VC$");
         field = WheelFort.wheelSpin(); //Aufrufen der eigentlichen Logik
 
